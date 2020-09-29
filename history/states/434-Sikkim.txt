@@ -3,7 +3,7 @@ state={
 	name="STATE_434"
 	manpower = 200000
 	state_category=wasteland
-	provinces={ 1116 12322 }
+	provinces={ 4435 }
 	resources={
 		tungsten=1
 	}
