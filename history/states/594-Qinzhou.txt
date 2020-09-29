@@ -1,14 +1,14 @@
 
 state={
-	id=599
-	name="STATE_599"
+	id=594
+	name="STATE_594"
 	resources={
-		steel=1.000
+		steel=6.000
 	}
 
 	history={
 		victory_points = {
-			10404 3 
+			7137 10 
 		}
 		owner = QIN
 		add_core_of = QIN
@@ -21,31 +21,38 @@ state={
 			add_core_of = GXC
 			add_core_of = CHI
 			victory_points = {
-				10404 3 
+				7137 10 
 			}
 			buildings = {
 				infrastructure = 3
 				industrial_complex = 1
-				air_base = 2
 
 			}
 
 		}
 		1938.10.25 = {
+			remove_core_of = GXC
 			owner = CHI
+			JAP = {
+				set_province_controller = 1018
+				set_province_controller = 4023
+				set_province_controller = 10004
+
+			}
 
 		}
 		buildings = {
 			infrastructure = 3
+			industrial_complex = 1
 
 		}
 
 	}
 
 	provinces={
-		1023 1469 1597 1625 4028 4077 4085 4121 4134 4152 4177 4628 4656 7044 7095 7128 7137 7168 7192 7210 7650 10039 10050 10121 10404 10431 10459 11983 12023 12407 12436 
+		1018 4023 4160 7135 10004 10105 11926 
 	}
-	manpower=8685200
+	manpower=6550000
 	buildings_max_level_factor=1.000
 	state_category=town
 }

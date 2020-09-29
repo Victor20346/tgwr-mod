@@ -3,15 +3,13 @@ state={
 	name="STATE_434"
 	manpower = 200000
 	state_category=wasteland
-	provinces={ 1116 1996 10810 12322 12730 }
+	provinces={ 1116 12322 }
 	resources={
 		tungsten=1
 	}
 	history={
-		owner = QIN
-		add_core_of = QIN
-		add_core_of = TIB
-		add_claim_by = RAJ
+		owner = RAJ
+		add_core_of = RAJ
 		buildings = {
 			infrastructure=1
 		}

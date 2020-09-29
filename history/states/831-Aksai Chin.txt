@@ -1,0 +1,16 @@
+state={
+	id=831
+	name="STATE_831"
+	provinces={
+		5042 
+	}
+	manpower=1000
+	buildings_max_level_factor=1.000
+	history={
+		owner = RAJ
+		add_core_of = QIN
+		buildings = {
+			infrastructure=1
+		}
+	}
+}
