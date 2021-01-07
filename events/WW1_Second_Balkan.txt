@@ -160,7 +160,21 @@ country_event = {
 					transfer_state = 759 
 					add_state_core = 759
 				}
-				BUL = { remove_state_core = 759 add_state_claim = 759 }					
+				BUL = { remove_state_core = 759 add_state_claim = 759 }
+				BUL = { remove_state_core = 106 add_state_claim = 106 }
+			}
+			if = {
+				limit = {
+					BUL = { owns_state = 106 }
+					SER = {
+						has_war_with = BUL
+					}
+				}
+				SER = { 
+					transfer_state = 106
+					add_state_core = 106
+				}
+				BUL = { remove_state_core = 106 add_state_claim = 106 }				
 			}
 			# Греческая Македония
 			if = {
@@ -272,7 +286,7 @@ country_event = {
 			}
 			BUL = {
 				add_ai_strategy = {
-					type = friend
+					type = befriend
 					id = GER
 					value = 100
 				}
@@ -449,7 +463,7 @@ country_event = {
 			}
 			SER = {
 				add_ai_strategy = {
-					type = friend
+					type = befriend
 					id = RUS
 					value = 100
 				}

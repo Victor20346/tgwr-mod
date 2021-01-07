@@ -13,10 +13,6 @@ country_event = {
 	
 	option = {
 		name = ww1_serbia.1.a
-		add_state_claim = 760
-		add_state_claim = 106
-		add_state_claim = 759
-		add_state_claim = 44
 		
 		ai_chance = { factor = 100 }
 	}
@@ -35,7 +31,6 @@ country_event = {
 	
 	option = {
 		name = ww1_serbia.2.a
-		MNT = { add_state_claim = 761 }
 		ai_chance = { factor = 100 }
 	}
 }
@@ -53,12 +48,6 @@ country_event = {
 	
 	option = {
 		name = ww1_serbia.3.a
-		GRE = { 
-			add_state_claim = 790
-			add_state_claim = 803
-			add_state_claim = 757
-			add_state_claim = 184
-		}
 		ai_chance = { factor = 100 }
 	}
 }
@@ -76,13 +65,6 @@ country_event = {
 	
 	option = {
 		name = ww1_serbia.4.a
-		BUL = { 
-			add_state_claim = 788
-			add_state_claim = 759
-			add_state_claim = 757
-			add_state_claim = 184
-			add_state_claim = 731
-		}
 		ai_chance = { factor = 100 }
 	}
 }
@@ -113,23 +95,18 @@ country_event = {
 		}
 		if = {
 			limit = { tag = MNT }
-			add_state_claim = 761
 			SER = { country_event = { id = ww1_serbia.2 } }
 		}
 		if = {
 			limit = { tag = GRE }
-			add_state_claim = 790 
-			add_state_claim = 803
-			add_state_claim = 757
-			add_state_claim = 184
 			SER = { country_event = { id = ww1_serbia.3 } }
 		}
 		if = {
-			limit = { tag = BUL }
-			add_state_claim = 788
-			add_state_claim = 759
-			add_state_claim = 757
+			limit = { tag = BUL }			
 			add_state_claim = 184
+			add_state_claim = 757
+			add_state_claim = 756
+			add_state_claim = 731
 			SER = { country_event = { id = ww1_serbia.4 } }
 		}
 		set_country_flag = join_balkan_league
@@ -138,6 +115,7 @@ country_event = {
 	
 	option = {
 		name = ww1_serbia.5.b
+		
 		if = {
 			limit = { tag = MNT }
 			SER = { country_event = { id = ww1_serbia.9 } }
@@ -276,7 +254,10 @@ country_event = {
 	
 	option = {
 		name = ww1_serbia.9.a
-		SER = { add_state_claim = 761 }
+		every_state = {
+			limit = { is_core_of = MNT is_owned_by = TUR }
+			SER = { add_state_claim = PREV }
+		}
 		ai_chance = { factor = 100 }
 	}
 }
@@ -294,11 +275,13 @@ country_event = {
 	
 	option = {
 		name = ww1_serbia.10.a
-		SER = {
-			add_state_claim = 790 
-			add_state_claim = 803
-			add_state_claim = 757
-			add_state_claim = 184
+		every_state = {
+			limit = { 
+				is_core_of = GRE 
+				is_owned_by = TUR 
+				NOT = { state = 790 } 
+			}
+			SER = { add_state_claim = PREV }
 		}
 		ai_chance = { factor = 100 }
 	}
@@ -317,11 +300,9 @@ country_event = {
 	
 	option = {
 		name = ww1_serbia.11.a
-		SER = {
-			add_state_claim = 788
-			add_state_claim = 759
-			add_state_claim = 757
-			add_state_claim = 184
+		every_state = {
+			limit = { is_core_of = BUL is_owned_by = TUR }
+			SER = { add_state_claim = PREV }
 		}
 		ai_chance = { factor = 100 }
 	}
@@ -700,7 +681,7 @@ country_event = {
 #Austrija zahteva povlačenje s Jadranske obale
 country_event = {
 	id = ww1_serbia.24
-	name = ww1_serbia.24.t
+	title = ww1_serbia.24.t
 	desc = ww1_serbia.24.d
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -745,12 +726,15 @@ country_event = {
 }
 country_event = { #Bugarska traži Makedoniju 
 	id = ww1_serbia.26
-	name = ww1_serbia.26.t
+	title = ww1_serbia.26.t
 	desc = ww1_serbia.26.d
-
+	fire_only_once = yes
 	trigger = { 
 		tag = SER
-		has_country_flag = odbili_albaniju #Ja mogu razumem srpski jezik, ali je bolje pisati na engleskom, every flag
+		OR = {
+			NOT = {country_exists = AUH }
+			has_country_flag = odbili_albaniju #Ja mogu razumem srpski jezik, ali je bolje pisati na engleskom, every flag
+		}
 		owns_state = 44
 		NOT = {has_completed_focus = SER_great_serbia }
 	}
@@ -761,7 +745,7 @@ country_event = { #Bugarska traži Makedoniju
 			transfer_state = 106 #Makedonija
 			add_state_core = 106
 		}
-		SER = { disband_faction = yes}
+		SER = { dismantle_faction = yes}
 		if = {
 			limit = {
 				SER = {has_war = yes}
@@ -801,7 +785,7 @@ country_event = { #Bugarska traži Makedoniju
 	option = {
 		name = ww1_serbia.26.b
 		BUL = {leave_faction = yes}
-		SER = {disband_faction = yes}
+		SER = {dismantle_faction = yes}
 		if = {
 			limit = {
 				AUH = {has_war_with = BUL}
@@ -848,6 +832,125 @@ country_event = { #Bugarska traži Makedoniju
 	}
 }
 
+#Vojvoda Putnik zarobljen u Budimpešti
+country_event = {
+	id = ww1_serbia.28
+	title = ww1_serbia.28.t
+	desc = ww1_serbia.28.d
+	fire_only_once = yes
+    picture = GFX_report_event_generic_sign_treaty3
+	trigger = {
+		tag = AUH
+		has_global_flag = kis_franzferdinand_murdered
+	}
+	mean_time_to_happen = { days = 3 }
+	option = {
+		name = ww1_serbia.28.a
+		SER = {
+			country_event = { id = ww1_serbia.29 days = 2}
+			remove_unit_leader = 82002
+			set_country_flag = Putnik_captured
+		}
+		add_stability = -0.04
+	    add_political_power = -50
+	
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+	option = {
+		name = ww1_serbia.28.b
+		ai_chance = {
+			factor = 80
+		}
+	}
+}
+#Srpska reakcija na austrijsko hapšenje vojvode Putnika
+country_event = {
+	id = ww1_serbia.29
+	title = ww1_serbia.29.t
+	desc = ww1_serbia.29.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_army
+	option = {
+		name = ww1_serbia.29.a
+		add_war_support = 0.07
+		every_unit_leader = {
+			limit = {
+				has_id = 82004	#Stepa Stepanović
+			}
+			promote_leader = yes
+		}
+		ai_chance = { factor = 33 }
+	}
+	option = {
+		name = ww1_serbia.29.b
+		add_war_support = 0.07
+		every_unit_leader = {
+			limit = {
+				has_id = 82005	#Živojin Mišić
+			}
+			promote_leader = yes
+		}
+		ai_chance = { factor = 33 }
+	}
+	option = {
+		name = ww1_serbia.29.c
+		add_war_support = 0.07
+		every_unit_leader = {
+			limit = {
+				has_id = 82007	#Petar Bojović
+			}
+			promote_leader = yes
+		}
+		ai_chance = { factor = 33 }
+	}
+}
+#Svetozar Bojna hoće da se pridruži srpskoj vojsci
+country_event = {
+	id = ww1_serbia.30
+	title = ww1_serbia.30.t
+	desc = ww1_serbia.30.d
+	fire_only_once = yes
+	picture = GFX_report_event_generic_army
+	trigger = {
+		tag = SER
+		has_country_flag = great_war_winner
+		has_completed_focus = SER_form_yugoslavia
+		NOT = { country_exists = AUH }
+	}
+	mean_time_to_happen = { days = 11 }
+	option = { #da, zašto da ne
+		name = ww1_serbia.30.a
+		SER = {
+			add_political_power = -75
+			add_stability = -0.03
+		}
+		AUH = {
+		every_unit_leader = {
+        	limit = {
+            	has_id = 82008 
+            }
+            set_nationality = SER
+        }
+		}
+		ai_chance = {
+			factor = 50 
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+	option = { #ne prihvatamo izdajice
+		name = ww1_serbia.30.b
+		ai_chance = { factor = 50 }
+	}
+}
 
 # KOLUBARA BATTLE
 ####################

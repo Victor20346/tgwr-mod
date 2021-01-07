@@ -580,7 +580,9 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
-			country_event = { id = ww1_serbia.12 }
+			MNT ={
+				country_event = { id = ww1_serbia.12 }
+			}
 		}
 	}
 	focus = {
@@ -622,35 +624,26 @@ focus_tree = {
 		bypass = {
 			is_in_faction = yes
 		}
-			select_effect = {
-					country_event = {
-						id = ww1_serbia.1
-						days = 1
-					}
-					hidden_effect = {
-						BUL = {
-							country_event = {
-								id = ww1_serbia.5
-								days = 15
-							}
-						}
-						GRE = {
-							country_event = {
-								id = ww1_serbia.5
-								days = 10
-							}
-						}
-						MNT = {
-							country_event = {
-								id = ww1_serbia.5
-								days = 5
-							}
-						}
-					}
-				set_country_flag = SER_creating_balkan_league
+		select_effect = {
+			country_event = {
+				id = ww1_serbia.1
+				days = 1
 			}
-			completion_reward = {
-					create_faction = balkan_league
+			hidden_effect = {
+				BUL = {
+					country_event = { id = ww1_serbia.5 days = 15 random = 5 }
+				}
+				GRE = {
+					country_event = { id = ww1_serbia.5 days = 10 random = 5 }
+				}
+				MNT = {
+					country_event = { id = ww1_serbia.5 days = 5 random = 5 }
+				}
+			}
+			set_country_flag = SER_creating_balkan_league
+		}
+		completion_reward = {
+			create_faction = balkan_league
 					if = {
 							limit = {
 									BUL = {
@@ -703,7 +696,6 @@ focus_tree = {
 							date > 1912.1.1
 						}
 				}
-
 	}
 	focus = {
 		id = SER_war_with_ottomans
@@ -733,15 +725,15 @@ focus_tree = {
 				OR = {
 					TUR = {exists = no}
 					has_war_with = TUR
-					is_in_faction_with = TUR					
-					TUR = {	
-                        AND = {					
-					    has_civil_war = no
-						NOT = {
-						 owns_state = 760 
-						 owns_state = 106 
-						 owns_state = 759 
-						}
+					is_in_faction_with = TUR
+					TUR = {
+						all_owned_state = {
+							NOT = {
+								is_core_of = SER
+								is_core_of = MNT
+								is_core_of = BUL
+								is_core_of = GRE
+							}
 						}
 					}
 					AND = {
@@ -876,10 +868,13 @@ focus_tree = {
 		bypass = {
 			OR = {
 				has_global_flag = kis_secondbalkan_war
-				owns_state = 759
-				AND = {
+				owns_state = 759	
+				OR = {
 					has_country_flag = odbili_albaniju
-					owns_state = 106
+					AND = {
+						NOT = {country_exists = AUH }
+						SER = {owns_state = 44 }
+					}
 				}
 			}
 		}
@@ -934,10 +929,11 @@ focus_tree = {
 		prerequisite = {
 			focus = SER_golden_age
 		}
+		available = {controls_state = 809}
 		x = 18
 		y = 1
 		completion_reward = {
-			108 = {
+			809 = {
 				set_state_flag = SER_infrastructure
 				add_building_construction = {
 					type = infrastructure
@@ -1420,7 +1416,7 @@ focus_tree = {
 							category = artillery
 						}
 					add_equipment_to_stockpile = {
-							type = light_field_gun_equipment_1
+							type = artillery_equipment_1
 							amount = 100
 							producer = RUS
 						}
@@ -1611,7 +1607,7 @@ focus_tree = {
 		y = 4
 		completion_reward = {
 			add_equipment_to_stockpile = {
-				type = ww1_bomber_equipment_1
+				type = tac_bomber_equipment_1
 				amount = 5
 				producer = RUS
 			}
@@ -1877,67 +1873,78 @@ focus_tree = {
 		}
 		x = 15
 		y = 7
-			cancel_if_invalid = yes
-			continue_if_invalid = no
-			available_if_capitulated = no
-			available = {
-					has_war = no
-					OR = {
-							AND = {
-									CRO = {
-											owns_state = 103
-											owns_state = 104
-											owns_state = 109
-											is_puppet_of = SER
-										}
-									SER = {
-											owns_state = 107
-											owns_state = 108
-										}
-								}
-							SER = {
-									owns_state = 107
-									owns_state = 108
-									owns_state = 103
-									owns_state = 104
-									owns_state = 109
-								}
-						}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		available = {
+			has_war = no
+			OR = {
+				AND = {
+					CRO = {
+						owns_state = 103
+						owns_state = 104
+						owns_state = 109
+						is_puppet_of = SER
+					}
+					SER = {
+						owns_state = 107
+					}
 				}
-			completion_reward = {
-					set_cosmetic_tag = SER_YUG
-					set_global_flag = form_yugoslavia
-					if = {
-							limit = {
-									CRO = {
-											is_puppet_of = SER
-										}
-								}
-							SER = {
-									annex_country = {
-											target = CRO
-											transfer_troops = no
-										}
-								}
-						}
-					if = {
-							limit = {
-									MNT = {
-											is_ai = yes
-										}
-								}
-							SER = {
-									annex_country = {
-											target = MNT
-											transfer_troops = no
-										}
-								}
-						}
+				SER = {
+					owns_state = 107
+					owns_state = 103
+					owns_state = 104
+					owns_state = 109
 				}
-			ai_will_do = {
-					factor = 100
+			}
+		}
+		completion_reward = {
+			set_global_flag = form_yugoslavia
+			if = {
+				limit = {
+					CRO = {
+						is_puppet_of = SER
+					}
 				}
-
+				SER = {
+					annex_country = {
+						target = CRO
+						transfer_troops = no
+					}
+				}
+			}
+			if = {
+				limit = {
+					MNT = {
+						is_ai = yes
+					}
+				}
+				SER = {
+					annex_country = {
+						target = MNT
+						transfer_troops = no
+					}
+				}
+			}
+			if = {
+				limit = {
+					SER = { owns_state = 102 }
+				}
+				set_cosmetic_tag = SER_YUG
+			}
+			if = {
+				limit = {
+					SER = {
+						NOT = { owns_state = 102 }
+					}
+				}
+				# They can't be named as Kingdom of Serbs, Croats and 'Slovenes' without owning Slevenia. This happens when Serbia is Austrian puppet, Illyria.
+				set_cosmetic_tag = YUG
+			}
+		}
+		ai_will_do = {
+			factor = 100
+		}
 	}
 	focus = {
 		id = SER_belgrade_pact

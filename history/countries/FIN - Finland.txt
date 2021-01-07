@@ -1,4 +1,4 @@
-﻿capital = 111
+capital = 111
 
 set_research_slots = 3
 set_stability = 0.36
@@ -31,7 +31,7 @@ create_country_leader = {
 create_corps_commander = {
 	name = "Carl Gustaf Mannerheim" 
 	portrait_path = "gfx/leaders/FIN/FIN_carl_mannerheim.dds" 
-	traits = { war_hero trickster winter_specialist } 
+	traits = { inflexible_strategist war_hero trickster winter_specialist } 
 	id = 100
 	skill = 4
 	attack_skill = 2
@@ -46,6 +46,9 @@ create_corps_commander = {
 	traits = { } 
 	skill = 2
 }
+
+set_cosmetic_tag = FIN_senate
+set_country_flag = FIN_senate
 
 	set_technology = {
 		#infantry
@@ -83,11 +86,10 @@ create_corps_commander = {
 		aircraft_engine = 1
 		generator_battery = 1
 	}
-
 	set_politics = {
-		ruling_party = neutrality
-		last_election = "1910.1.1" 
-		election_frequency = 60
+		ruling_party = neutrality 
+		last_election = "1906.7.26" 
+		election_frequency = 72
 		elections_allowed = no
 	}
 	set_popularities = {

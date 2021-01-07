@@ -1,6 +1,29 @@
 ideas = {
 
 	country = {
+		RUS_revolutionary_agitation = {
+			picture = anti_soviet_pact
+			allowed = { tag = RUS }
+			allowed_civil_war = { tag = RUS }
+			removal_cost = -1
+			available = { has_war = yes }
+			modifier = {
+				war_support_weekly = -0.01
+				stability_weekly = -0.01
+			}
+		}
+		RUS_20_years_of_peace = {
+			picture = generic_central_management
+			allowed = { tag = RUS }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			available = { has_war = no }
+			modifier = {
+				production_speed_industrial_complex_factor = 0.08
+				production_speed_arms_factory_factor = 0.08
+				custom_modifier_tooltip = RUS_20_years_of_peace_tt
+			}
+		}
 		RUS_idea_orthodox_church = {
 			picture = YUG_orthodox_church_support
 			allowed = { tag = RUS }
@@ -9,6 +32,17 @@ ideas = {
 			
 			modifier = {
 				stability_factor = 0.1 
+				drift_defence_factor = 0.50
+			}
+		}
+		RUS_idea_rasputin_church = {
+			picture = SOV_atheist_state
+			allowed = { tag = RUS }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+			available = { has_government = neutrality }
+			modifier = {
+				stability_factor = -0.1
 				drift_defence_factor = 0.50
 			}
 		}
@@ -74,8 +108,10 @@ ideas = {
 			allowed_civil_war = { always = yes }
 			removal_cost = -1
 			modifier = {
-				industrial_capacity_factory = -0.25
-				industrial_capacity_dockyard = -0.25
+				communism_drift = 0.02
+				production_factory_efficiency_gain_factor = -0.07
+				industrial_capacity_factory = -0.15
+				industrial_capacity_dockyard = -0.15
 			}
 		}
 		
@@ -85,9 +121,11 @@ ideas = {
 			allowed_civil_war = {always = yes}
 			removal_cost = -1
 			modifier = {
-				production_speed_buildings_factor = -0.75
-				industrial_capacity_factory = -0.5
-				industrial_capacity_dockyard = -0.5
+				communism_drift = 0.02
+				production_speed_buildings_factor = -0.75		
+				production_factory_efficiency_gain_factor = -0.10
+				industrial_capacity_factory = -0.25
+				industrial_capacity_dockyard = -0.25
 			}
 		}
 		RUS_idea_berlin_baghdad_railway = {
@@ -188,7 +226,7 @@ ideas = {
 			removal_cost = -1
 			modifier = {
 				political_power_gain = -0.25
-				army_morale_factor = -0.1
+				army_morale_factor = -0.05
 				war_support_weekly = -0.01
 			}
 		}
@@ -391,7 +429,7 @@ ideas = {
 			allowed = { tag = RUS }
 			available = { OR = { has_completed_focus = RUS_provisional_committee has_completed_focus = RUS_spirit_of_social_populism } }
 			traits = { democratic_reformer }
-			ai_will_do = { factor = 0 }
+			ai_will_do = { factor = 1 }
 		}
 		RUS_sergey_sazanov = {
 			allowed = { tag = RUS }
@@ -426,7 +464,7 @@ ideas = {
 			traits = { editor }
 			ai_will_do = { factor = 1 }
 		}
-		RUS_grigori_rasputin = {
+		RUS_grigori_rasputin = { #See eyes of your fear.
 			allowed = { tag = RUS }
 			picture = generic_political_advisor_europe_3
 			available = {
@@ -435,7 +473,8 @@ ideas = {
 				has_country_leader = { name = "Nicholas II" ruling_only = yes } 
 			}
 			cost = 75
-			traits = { silent_workhorse }
+			modifier = { stability_factor = -0.05 }
+			traits = { backroom_backstabber }
 			ai_will_do = { factor = 10 }
 		}
 		RUS_vladimir_lenin = {
@@ -486,6 +525,7 @@ ideas = {
 			research_bonus = {
 				land_doctrine = 0.10
 			}
+			ledger = army
 			traits = { military_theorist }
 			ai_will_do = { factor = 10 }
 		}
@@ -495,6 +535,7 @@ ideas = {
 			research_bonus = {
 				cat_mass_assault = 0.15
 			}
+			ledger = army
 			available = { has_completed_focus = RUS_tighten_the_selection_of_officers }
 			ai_will_do = { factor = 10 }
 		}
@@ -502,6 +543,7 @@ ideas = {
 			allowed = { tag = RUS }
 			picture = generic_army_europe_2
 			traits = { air_warfare_theorist }
+			ledger = air
 			research_bonus = { air_doctrine = 0.10 }
 			available = { has_completed_focus = RUS_aviation_school }
 			ai_will_do = { factor = 1 }
@@ -509,6 +551,7 @@ ideas = {
 		RUS_alexander_bubnov = {
 			allowed = { tag = RUS }
 			picture = generic_navy_europe_3
+			ledger = navy
 			research_bonus = { naval_doctrine = 0.10 }
 			traits = { naval_theorist }
 			ai_will_do = { factor = 1 }
@@ -581,39 +624,46 @@ ideas = {
 	high_command = {
 		RUS_mikhail_alexeev = {
 			allowed = { tag = RUS }
+			ledger = army
 			traits = { army_infantry_2 }
 			ai_will_do = { factor = 5 }
 		}
 		RUS_alexander_lukomsky = {
 			allowed = { tag = RUS }
+			ledger = army
 			picture = generic_army_europe_2
 			traits = { army_entrenchment_1 }
 			ai_will_do = { factor = 1 }
 		}
 		RUS_vasily_gurko = {
 			allowed = { tag = RUS }
+			ledger = army
 			picture = generic_army_europe_4
 			traits = { army_regrouping_1 }
 			ai_will_do = { factor = 1 }
 		}
 		RUS_pyotr_krasnov = {
 			allowed = { tag = RUS }
-			traits = { army_cavalry_2 }
+			ledger = army
+			traits = { army_cavalry_3 }
 			ai_will_do = { factor = 1 }
 		}
 		RUS_alexander_rusin = {
 			allowed = { tag = RUS }
+			ledger = navy
 			traits = { navy_fleet_logistics_2 }
 			ai_will_do = { factor = 1 }
 		}
 		RUS_mikhail_shishkevich = {
 			allowed = { tag = RUS }
 			picture = generic_army_europe_2
+			ledger = air
 			traits = { air_air_superiority_2 }
 			ai_will_do = { factor = 1 }
 		}
 		RUS_alexander_kazakov = {
 			allowed = { tag = RUS }
+			ledger = air
 			available = { has_completed_focus = RUS_aviation_school }
 			traits = { air_air_combat_training_2 }
 			ai_will_do = { factor = 1 }
@@ -675,13 +725,25 @@ ideas = {
 	materiel_manufacturer = {
 		designer = yes
 		tula_arms_plant = {
-			allowed = { tag = RUS }
+			allowed = { 
+				OR = {
+					tag = RUS tag = SOV
+				}
+			}
 			research_bonus = { infantry_weapons = 0.10 }
 			available = {
-				OR = {
-					SOV = { exists = no }
-					NOT = {
-						SOV = { has_completed_focus = SOV_nationalization } 
+				if = {
+					limit = { tag = SOV }
+					has_completed_focus = SOV_nationalization
+				}
+				if = {
+					limit = { tag = RUS }
+					OR = {
+						SOV = { exists = no }
+						AND = {
+							SOV = { exists = yes }
+							NOT = { SOV = { has_completed_focus = SOV_nationalization } }
+						}
 					}
 				}
 			}
@@ -694,13 +756,25 @@ ideas = {
 			}
 		}
 		kazan_plant = {
-			allowed = { tag = RUS }
+			allowed = { 
+				OR = {
+					tag = RUS tag = SOV
+				}
+			}
 			picture = generic_artillery_manufacturer_1
 			available = {
-				OR = {
-					SOV = { exists = no }
-					NOT = {
-						SOV = { has_completed_focus = SOV_nationalization } 
+				if = {
+					limit = { tag = SOV }
+					has_completed_focus = SOV_nationalization
+				}
+				if = {
+					limit = { tag = RUS }
+					OR = {
+						SOV = { exists = no }
+						AND = {
+							SOV = { exists = yes }
+							NOT = { SOV = { has_completed_focus = SOV_nationalization } }
+						}
 					}
 				}
 			}
@@ -709,9 +783,29 @@ ideas = {
 		}
 		moscow_automotive_society = {
 			allowed = { tag = RUS }
-			available = { has_completed_focus = RUS_AMO }
+			available = { 
+				has_completed_focus = RUS_AMO
+			}
+			cost = 175
+			available = {
+				RUS = { has_completed_focus = RUS_AMO }
+				if = {
+					limit = { tag = SOV }
+					has_completed_focus = SOV_nationalization
+				}
+				if = {
+					limit = { tag = RUS }
+					OR = {
+						SOV = { exists = no }
+						AND = {
+							SOV = { exists = yes }
+							NOT = { SOV = { has_completed_focus = SOV_nationalization } }
+						}
+					}
+				}
+			}
 			picture = generic_motorized_equipment_manufacturer_3
-			research_bonus = { motorized_equipment = 0.10 }
+			research_bonus = { motorized_equipment = 0.07 }
 			traits = { motorized_equipment_manufacturer }
 			equipment_bonus = {
 				motorized_equipment = {
@@ -724,7 +818,27 @@ ideas = {
 	industrial_concern = {
 		designer = yes
 		kharkov_locomotive_factory = {
-			allowed = { tag = RUS }
+			allowed = { 
+				OR = {
+					tag = RUS tag = SOV
+				}
+			}
+			available = {
+				if = {
+					limit = { tag = SOV }
+					has_completed_focus = SOV_nationalization
+				}
+				if = {
+					limit = { tag = RUS }
+					OR = {
+						SOV = { exists = no }
+						AND = {
+							SOV = { exists = yes }
+							NOT = { SOV = { has_completed_focus = SOV_nationalization } }
+						}
+					}
+				}
+			}
 			picture = generic_artillery_manufacturer_1
 			research_bonus = { industry = 0.10 }
 			traits = { industrial_concern }
@@ -745,19 +859,42 @@ ideas = {
 			research_bonus = { industry = 0.05 synth_resources = 0.1 }
 			traits = { refinery_concern }
 		}
+		putilov_factory = {
+			allowed = { 
+				OR = {
+					tag = RUS tag = SOV
+				}
+			}
+			picture = putilov_design_bureau
+			available = { 
+				RUS = { has_completed_focus = RUS_extension_of_the_putilov_factory }
+			}
+			research_bonus = { industry = 0.07 }
+			modifier = {
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+			}
+			traits = { industrial_concern }
+		}
+	
 	}
 	tank_manufacturer = {
 		designer = yes 
 		MMTD_bureau = {
 			picture = MMTD_bureau
-			allowed = { tag = RUS } 
-			cost = 50
+			allowed = { tag = RUS }
 			research_bonus = { armor = 0.05 }
 		}
 		putilov_design_bureau = {
-			allowed = { tag = RUS }
-			research_bonus = { armor = 0.1 }
-			available = { has_completed_focus = RUS_extension_of_the_putilov_factory }
+			allowed = { 
+				OR = {
+					tag = RUS tag = SOV
+				}
+			}
+			research_bonus = { armor = 0.10 }
+			available = { 
+				RUS = { has_completed_focus = RUS_extension_of_the_putilov_factory }
+			}
 			traits = { tank_manufacturer }
 		}
 	}

@@ -5,19 +5,6 @@ set_stability = 0.51
 set_war_support = 0.19
 set_convoys = 42
 
-if = {
-	limit = {
-		has_dlc = "Man the Guns"
-	}
-	set_naval_oob = "BRA_1910_naval_mtg"
-}
-if = {
-	limit = {
-		NOT = { has_dlc = "Man the Guns" }
-	}
-	set_naval_oob = "BRA_1910_naval_mtg"
-}
-
 create_country_leader = {
 	name = "Nilo Peçanha" 
 	picture = "gfx/leaders/BRA/BRA_nilo_procopio_pecanha.dds" 
@@ -40,7 +27,7 @@ create_country_leader = {
 	traits = { staunch_monarchist } 
 }
 create_country_leader = {
-	name = "Emídio Dantas Barreto" 
+	name = "Emygdio Dantas Barreto" 
 	picture = "gfx/leaders/BRA/BRA_dantas_barret.dds" 
 	expire = "1931.1.1" 
 	ideology = military_dictatorship
@@ -48,83 +35,111 @@ create_country_leader = {
 }
 
 
-create_field_marshal = {  
+create_field_marshal = {
 	name = "Vespasiano Gonçalves Silva"
 	portrait_path = "gfx/leaders/BRA/BRA_vespasiano_silva.dds" 
 	traits = { old_guard } 
 	id = 55655
 	skill = 2
 	attack_skill = 1
-	defense_skill = 1
+	defense_skill = 2
 	planning_skill = 2
-	logistics_skill = 3	
+	logistics_skill = 2	
 }
 create_field_marshal = {  
-	name = "Emídio Dantas Barreto"
+	name = "Emygdio Dantas Barreto"
 	portrait_path = "gfx/leaders/BRA/BRA_dantas_barret.dds" 
 	traits = { politically_connected war_hero}
 	id = 55656
-	skill = 3
-	attack_skill = 1
-	defense_skill = 1
-	planning_skill = 2
-	logistics_skill = 3	
+	skill = 2
+	attack_skill = 2
+	defense_skill = 2
+	planning_skill = 1
+	logistics_skill = 2
 }
 create_corps_commander = {  
 	name = "Antônio Mena Barreto"
 	portrait_path = "gfx/leaders/BRA/BRA_mena_barreto.dds" 
 	traits = { old_guard war_hero} 
 	id = 55657
-	skill = 3
-	attack_skill = 1
-	defense_skill = 1
-	planning_skill = 2
-	logistics_skill = 3	
+	skill = 2
+	attack_skill = 2
+	defense_skill = 2
+	planning_skill = 1
+	logistics_skill = 2	
 }
 create_corps_commander = {  
 	name = "Cândido Rondon"
 	portrait_path = "gfx/leaders/BRA/BRA_candido_rondon.dds" 
-	traits = { career_officer jungle_rat} 
+	traits = { career_officer jungle_rat expert_improviser} 
 	id = 55654
 	skill = 2
-	attack_skill = 1
+	attack_skill = 3
 	defense_skill = 1
-	planning_skill = 3
-	logistics_skill = 3
+	planning_skill = 1
+	logistics_skill = 2
 }
 create_corps_commander = {  
 	name = "Alberto Cardoso de Aguiar"
 	portrait_path = "gfx/leaders/BRA/BRA_alberto_cardoso_de_aguiar.dds" 
 	id = 55658
-	traits = { } 
-	skill = 2
+	traits = { trait_cautious organizer} 
+	skill = 1
 	attack_skill = 1
 	defense_skill = 1
-	planning_skill = 3
-	logistics_skill = 3
+	planning_skill = 1
+	logistics_skill = 1
 }
 create_field_marshal = {  
 	name = "José Caetano de Faria"
 	portrait_path = "gfx/leaders/BRA/BRA_jose_caetano_de_faria.dds" 
 	id = 55659
-	traits = { } 
-	skill = 2
+	traits = { thorough_planner politically_connected} 
+	skill = 1
 	attack_skill = 1
 	defense_skill = 1
-	planning_skill = 3
-	logistics_skill = 3
+	planning_skill = 1
+	logistics_skill = 1
 }
 create_corps_commander = {
 	name = "Augusto Tasso Fragoso"
+	portrait_path = "gfx/leaders/BRA/BRA_tasso_fragoso.dds" 
 	id = 55661
 	traits = { career_officer media_personality } 
 	skill = 1
 	attack_skill = 1
 	defense_skill = 1
-	planning_skill = 2
+	planning_skill = 1
 	logistics_skill = 1
 }
-
+create_corps_commander = {
+	name = "Setembrino de Carvalho"
+	portrait_path = "gfx/leaders/BRA/BRA_setembrino_de_carvalho.dds" 
+	id = 55662
+	traits = {
+		career_officer
+		harsh_leader
+	}
+	skill = 1
+	attack_skill = 1
+	defense_skill = 1
+	planning_skill = 1
+	logistics_skill = 1
+}
+create_corps_commander = {
+	name = "Isidoro Dias Lopes"
+	portrait_path = "gfx/leaders/BRA/BRA_isidoro_dias.dds"
+	traits = {
+		skilled_staffer
+		infantry_officer
+	}
+	id = 55663
+	skill = 2
+	attack_skill = 1
+	defense_skill = 2
+	planning_skill = 3
+	logistics_skill = 2
+}
 
 create_navy_leader = {
 	name = "Faria de Alencar" 
@@ -191,4 +206,217 @@ add_ideas = {
 	BRA_idea_outdated_army
 	BRA_idea_amazon_rubber_boom
 	BRA_idea_high_immigration
+}
+
+if = {
+	limit = {
+		NOT = { has_dlc = "Man the Guns" }
+	}
+
+	set_technology = {
+		early_destroyer = 1
+		basic_destroyer = 1
+		early_light_cruiser = 1
+		early_heavy_cruiser = 1
+		early_battleship = 1
+		basic_battleship = 1
+		transport = 1
+	}
+
+	set_naval_oob = "BRA_1910_naval_legacy"
+
+	create_equipment_variant = {
+		name = "Minas Geraes Class"
+		type = battleship_2
+		parent_version = 0
+	}
+	create_equipment_variant = {
+		name = "Almirante Tamandaré Class"
+		type = light_cruiser_1
+		parent_version = 0
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "República Class"
+		type = light_cruiser_1
+		parent_version = 0
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "Bahia Class"
+		type = heavy_cruiser_1
+		parent_version = 0
+	}
+	create_equipment_variant = {
+		name = "Acre Class"
+		type = destroyer_1
+		parent_version = 0
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "Deodoro Class"
+		type = light_cruiser_1
+		parent_version = 0
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "Pará Class"
+		type = destroyer_2
+		parent_version = 0
+	}
+}
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+
+	set_technology = {
+		basic_naval_mines = 1	
+		early_ship_hull_light = 1
+		basic_ship_hull_light = 1
+		early_ship_hull_cruiser = 1
+		basic_ship_hull_cruiser = 1
+		early_ship_hull_heavy = 1
+		basic_ship_hull_heavy = 1
+		basic_battery = 1
+		basic_light_battery = 1
+		basic_medium_battery = 1
+		improved_medium_battery = 1
+		basic_heavy_battery = 1
+		improved_heavy_battery = 1
+		basic_torpedo = 1
+		sonar = 1
+		smoke_generator = 1
+		basic_secondary_battery = 1
+		improved_secondary_battery = 1
+		basic_cruiser_armor_scheme = 1
+		basic_heavy_armor_scheme = 1
+		mtg_transport = 1
+		pre_dreadnoughts = 1
+	}
+
+	set_naval_oob = "BRA_1910_naval_mtg"
+
+	create_equipment_variant = {
+		name = "Minas Geraes Class"
+		type = ship_hull_heavy_2
+		name_group = BRA_BB_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_heavy_battery_2
+			fixed_ship_anti_air_slot = empty
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = heavy_ship_engine_2
+			fixed_ship_secondaries_slot = ship_secondaries_2
+			fixed_ship_armor_slot = ship_armor_bb_2
+			front_1_custom_slot = empty
+			mid_1_custom_slot = ship_secondaries_1
+			rear_1_custom_slot = empty
+		}
+	}
+	create_equipment_variant = {
+		name = "Almirante Tamandaré Class"
+		type = ship_hull_cruiser_1
+		name_group = BRA_CL_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_medium_battery_1
+			fixed_ship_anti_air_slot = empty
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = cruiser_ship_engine_1
+			fixed_ship_armor_slot = ship_armor_cruiser_1
+			front_1_custom_slot = empty
+			mid_1_custom_slot = empty
+			rear_1_custom_slot = empty
+		}
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "República Class"
+		type = ship_hull_cruiser_1
+		name_group = BRA_CL_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_medium_battery_1
+			fixed_ship_anti_air_slot = empty
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = cruiser_ship_engine_1
+			fixed_ship_armor_slot = ship_armor_cruiser_1
+			front_1_custom_slot = empty
+			mid_1_custom_slot = ship_secondaries_1
+			rear_1_custom_slot = empty
+		}
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "Bahia Class"
+		type = ship_hull_cruiser_2
+		name_group = BRA_CL_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_medium_battery_2
+			fixed_ship_anti_air_slot = empty
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = cruiser_ship_engine_2
+			fixed_ship_armor_slot = ship_armor_cruiser_2
+			front_1_custom_slot = empty
+			mid_1_custom_slot = ship_light_battery_1
+			rear_1_custom_slot = empty
+		}
+	}
+	create_equipment_variant = {
+		name = "Deodoro Class"
+		type = ship_hull_cruiser_1
+		name_group = BRA_CL_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_medium_battery_1
+			fixed_ship_anti_air_slot = empty
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = cruiser_ship_engine_1
+			fixed_ship_armor_slot = ship_armor_cruiser_1
+			front_1_custom_slot = empty
+			mid_1_custom_slot = empty
+			rear_1_custom_slot = empty
+		}
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "Acre Class"
+		type = ship_hull_light_1
+		name_group = BRA_DD_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_1
+			fixed_ship_anti_air_slot = empty
+			fixed_ship_fire_control_system_slot = empty
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = light_ship_engine_1
+			fixed_ship_torpedo_slot = empty
+			mid_1_custom_slot = empty
+			rear_1_custom_slot = empty
+		}
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "Pará Class"
+		type = ship_hull_light_2
+		name_group = BRA_DD_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_2
+			fixed_ship_anti_air_slot = empty
+			fixed_ship_fire_control_system_slot = empty
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = light_ship_engine_2
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			mid_1_custom_slot = empty
+			rear_1_custom_slot = empty
+		}
+	}
 }

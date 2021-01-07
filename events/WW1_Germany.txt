@@ -16,6 +16,10 @@ country_event = {
 		has_country_flag = great_war_loser
 		NOT = { has_global_flag = weimar_republic }
 		NOT = { has_completed_focus = GER_constitutional_compromise }
+		OR = {
+		 has_country_flag = kiel_mutiny
+		 has_stability < 0.4
+		}
 	}
 	option = {
 		name = ww1_germany.1.a
@@ -40,9 +44,9 @@ country_event = {
 		hidden_effect = {
 			set_popularities = {
 				democratic = 42
-				neutrality = 30
-				fascism = 10
-				communism = 18
+				neutrality = 26
+				fascism = 12
+				communism = 20
 			}
 			load_oob = GER_1918
 		}
@@ -263,14 +267,20 @@ country_event = {
     fire_only_once = yes
     trigger = {
 		tag = GER
-		has_country_flag = great_war_loser
+		date > 1918.5.1
+		has_war_with = FRA
+		casualties > 2000000
+		has_war_support < 0.6
+		has_stability < 0.5
+		NOT = { has_country_flag = kiel_mutiny }
 	}
-	mean_time_to_happen = { days = 1 }
+	mean_time_to_happen = { days = 5 }
 
 	option = {
 		name = ww1_germany.11.a
-		add_timed_idea = { idea = GER_idea_kiel_mutiny days = 35 }
+		add_timed_idea = { idea = GER_idea_kiel_mutiny days = 43 }
 		ai_chance = { factor = 100 }
+		set_country_flag = kiel_mutiny
 	}
 }
 # SPARTAKISTS REVOLT
@@ -1016,32 +1026,72 @@ country_event = {
         }
     }
 }
-# CREATE MITTLEAFRIKA
+# CREATE MITTELAFRIKA
 country_event = {
-    id = ww1_germany.26
-    hidden = yes
-
-    fire_only_once = yes
-    #trigger = {
-	#	tag = GER
-	#	has_country_flag = great_war_winner
-	#	owns_state = 772
-	#	owns_state = 295
-	#	owns_state = 538
-	#	owns_state = 718
-	#	owns_state = 558
-	#	GER = { has_completed_focus = GER_claim_mittleafrika }
-	#}
-	#mean_time_to_happen = { days = 1 }
+	id = ww1_germany.26
+	title = ww1_germany.26.t
+	desc = ww1_germany.26.d
+	fire_only_once = no
 	is_triggered_only = yes
-    immediate = {
-		CMR = {
-			drop_cosmetic_tag = yes
-			set_cosmetic_tag = GER_mittleafrika
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					CMR = {
+						NOT = {
+							OR = {
+								is_subject_of = ROOT
+								has_cosmetic_tag = GER_mittelafrika
+							}
+						}
+					}
+				}
+				CMR = {
+					drop_cosmetic_tag = yes
+					set_cosmetic_tag = GER_mittelafrika
+					every_state = {
+						limit = {
+							is_on_continent = africa
+							is_owned_by = ROOT
+							is_owned_by = TZN
+							is_owned_by = TOG
+							is_owned_by = CMR
+							NOT = { state = 461 }
+							NOT = { state = 462 }
+							NOT = { state = 541 }
+							NOT = { state = 789 }
+							NOT = { state = 543 }
+							NOT = { state = 810 }
+						}
+						CMR = { transfer_state = PREV add_state_core = PREV }
+					}
+					create_country_leader = {
+						name = "Paul von Lettow-Vorbeck"
+						picture = "gfx/leaders/GER/GER_paul_lettow_vorbeck.dds"
+						expire = "1935.1.1"
+						ideology = despotism
+					}
+				}
+
+				ROOT = {
+					puppet = CMR
+
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = CMR
+							autonomy_state = autonomy_colony
+						}					
+					}
+				}
+			}
+
 			every_state = {
 				limit = {
 					is_on_continent = africa
-					is_owned_by = GER
+					is_owned_by = ROOT
 					is_owned_by = TZN
 					is_owned_by = TOG
 					is_owned_by = CMR
@@ -1054,14 +1104,13 @@ country_event = {
 				}
 				CMR = { transfer_state = PREV add_state_core = PREV }
 			}
-			create_country_leader = {
-				name = "Paul von Lettow-Vorbeck"
-				picture = "gfx/leaders/GER/GER_paul_lettow_vorbeck.dds"
-				expire = "1935.1.1"
-				ideology = despotism
-			}
 		}
-		GER = { puppet = CMR }
+	}
+	option = {
+		name = ww1_germany.26.a
+		ai_chance = {
+			factor = 100
+		}
 	}
 }
 # BEFRIEND SWEDEN
@@ -2652,46 +2701,201 @@ country_event = {
 	id = ww1_germany.74
 	title = ww1_germany.74.t
 	desc = ww1_germany.74.d
-	
+	picture = GFX_report_event_gre_megali_conference_signing
 	is_triggered_only = yes
 	fire_only_once = yes		
-	option={ 
-		name=ww1_germany.74.a
-		ai_chance={
-				factor=100
+	option = {
+		name = ww1_germany.74.a
+		ai_chance = { factor = 100 }
+		set_global_flag = treaty_of_bucharest_1918
+        if = {
+			limit = {
+				ROM = {
+				    owns_state = 77	
 				}
-		ROM = {
-			transfer_state = 78
-			transfer_state = 766
-			give_military_access = AUH
-			give_military_access = BUL
-			give_military_access = GER
-			give_military_access = TUR
+				BUL = {
+				    has_war_with = ROM
+					NOT = {has_war_with = GER}
+				}
 			}
-		BUL = {
-			transfer_state = 805
-			transfer_state = 77
+			BUL = {
+				transfer_state = 77
 			}
-		UKR = {
-			remove_state_core = 78
-			remove_state_core = 766
-			}
-		ROM = {
-			leave_faction = yes
-			}
-		GER = { 
-			white_peace = ROM
-			
-				diplomatic_relation = { 
-					country = ROM
-					relation = non_aggression_pact 
+		}
+        if = {
+			limit = {
+				ROM = {
+				    owns_state = 77	
+				}
+				BUL = {
+					OR = {
+				   	    NOT = {has_war_with = ROM}
+						has_war_with = GER
 					}
 				}
 			}
-	option={
-		name=ww1_germany.74.b
-		ai_chance={
-				factor=0
-				}
+			transfer_state = 77
 		}
+        if = {
+			limit = {
+				ROM = {
+				    owns_state = 805	
+				}
+			}
+			transfer_state = 805
+		}
+		if = {
+			limit = {
+				ROM = {
+				    owns_state = 79	
+				}
+				MOL = {
+				    has_war_with = ROM
+					NOT = {has_war_with = GER}
+				}
+			}
+			MOL = {
+				transfer_state = 79
+			}
+		}
+		every_country = {
+			limit = {
+				has_war_with = ROM
+			}
+			white_peace = ROM
+		}
+		ROM = {
+			leave_faction = yes
+			give_resource_rights = { receiver = GER state = 46 }
+			add_ideas = idea_army_restrictions
+		}
+		every_country = {
+		    limit = {
+				OR = {
+					tag = GER
+					AND = {
+				        is_in_faction_with = GER
+						OR = {
+							tag = AUH
+							tag = BUL
+							tag = MOL
+							tag = SER
+							tag = HUN
+							tag = TRA
+                            tag = RUS							
+						}
+                    }
+				}
+			}
+			diplomatic_relation = {
+				country = ROM
+				relation = non_aggression_pact 
+		    }
+			ROM = {
+			    give_military_access = PREV
+			}
+        }
+	}
+	option = {
+		name = ww1_germany.74.b
+		ai_chance = { factor = 0 }
+	}
+}
+# Aftermath of French Civil War Intervention
+country_event = {
+	id = ww1_germany.75
+	title = ww1_germany.75.t
+	desc = ww1_germany.75.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = ww1_germany.75.a
+		ai_chance = {
+			factor = 0
+			modifier = {
+				factor = 100
+				has_opinion = {
+					target = FRA
+					value < 0
+				}
+				has_stability > 0.5
+				has_war_support > 0.5
+				strength_ratio = {
+					tag = FRA
+					ratio > 3
+				}
+			}
+		}
+
+		declare_war_on = {
+			target = FRA
+			type = puppet_wargoal_focus
+		}
+
+		add_named_threat = {
+			threat = 20
+			name = ww1_germany.75.t
+		}
+
+		hidden_effect = {
+			news_event = ww1_germany.76
+		}
+	}
+	option = {
+		name = ww1_germany.75.b
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 0
+				has_opinion = {
+					target = FRA
+					value < 0
+				}
+				has_stability > 0.5
+				has_war_support > 0.5
+				strength_ratio = {
+					tag = FRA
+					ratio > 3
+				}
+			}
+		}
+
+		add_stability = 0.1
+	}
+}
+# Germany Invades Nationalist France On Metropolitan France
+news_event = {
+	id = ww1_germany.76
+	title = news.155.t
+	desc = news.155.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	picture = GFX_news_event_german_soldiers
+	major = yes
+	option = {
+		name = news.155.b
+		ai_chance = { factor = 100 }
+		trigger = {
+			OR = {
+				tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+				has_war_with = FRA
+				has_country_flag = great_war_winner
+			}
+		}
+	}
+	option = {
+		name = news.155.a
+		ai_chance = { factor = 100 }
+		trigger = {
+			OR = {
+				tag = FRA
+				is_in_faction_with = FRA
+				is_subject_of = FRA
+				has_war_with = GER
+				has_country_flag = great_war_loser
+			}
+		}
+	}
 }

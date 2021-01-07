@@ -1,4 +1,12 @@
 replace_path="history/states"
+replace_path="history/countries"
+replace_path="history/units"
+replace_path="common/ai_strategy_plans"
+replace_path="common/bookmarks"
+replace_path="common/national_focus"
+replace_path="common/on_actions"
+replace_path="common/scripted_localisation"
+replace_path="common/scripted_effects"
 tags={
 	"Fixes"
 	"Events"
@@ -12,6 +20,6 @@ tags={
 	"Map"
 }
 name="Hearts of Iron IV: The Great War Redux [Beta]"
-version="0.5"
-supported_version="1.9.3"
+version="0.6" 
+supported_version="1.10.*"
 remote_file_id="1946557392"

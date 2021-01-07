@@ -87,6 +87,76 @@ country_event = {
 			target = RUS
 			modifier = medium_increase
 		}
+		effect_tooltip  = {
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+					}
+				}
+				diplomatic_relation = {
+    				country = USA
+    				relation = guarantee
+   				    active = no
+				}	
+			}
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}	
+			}
+		}
 	}
 }
 #BORDER CONFLICT - WARNING
@@ -749,6 +819,13 @@ country_event = {
 						has_stability > 0.65
 						factor = 1.25
 					}
+					modifier = {
+						has_game_rule = {
+							rule = roosevelt_fate
+							option = ROOSEVELT_DIES
+				    	}
+						factor = 0
+				    }
 					country_event = { id = ww1_usa.31 days = 30 } #Roosevelt is shot
 				}
 				35 = { 
@@ -760,6 +837,20 @@ country_event = {
 						is_historical_focus_on = yes
 						factor = 0
 					}
+					modifier = {
+						has_game_rule = {
+							rule = roosevelt_fate
+							option = ROOSEVELT_SURVIVES
+				    	}
+						factor = 0
+				    }
+					modifier = {
+						has_game_rule = {
+							rule = roosevelt_fate
+							option = ROOSEVELT_DIES
+				    	}
+						add = 100
+				    }
 					country_event = { id = ww1_usa.32 days = 30 } #Roosevelt is dead
 				}
 			}
@@ -805,6 +896,13 @@ country_event = {
 						has_stability > 0.65
 						factor = 1.25
 					}
+					modifier = {
+						has_game_rule = {
+							rule = roosevelt_fate
+							option = ROOSEVELT_DIES
+				    	}
+						factor = 0
+				    }
 					country_event = { id = ww1_usa.31 days = 30 } #Roosevelt is shot
 				}
 				35 = { 
@@ -816,6 +914,20 @@ country_event = {
 						is_historical_focus_on = yes
 						factor = 0
 					}
+					modifier = {
+						has_game_rule = {
+							rule = roosevelt_fate
+							option = ROOSEVELT_SURVIVES
+				    	}
+						factor = 0
+				    }
+					modifier = {
+						has_game_rule = {
+							rule = roosevelt_fate
+							option = ROOSEVELT_DIES
+				    	}
+						add = 100
+				    }
 					country_event = { id = ww1_usa.32 days = 30 } #Roosevelt is dead
 				}
 			}
@@ -1189,6 +1301,7 @@ country_event = {
 		set_country_flag = new_socialism
 		set_politics = { ruling_party = communism elections_allowed = yes }
 		set_country_flag = USA_elections_1912_end
+		hidden_effect = {set_cosmetic_tag = USA_socialism}
 	}
 	# Roosevelt/Taft/Wilson
 	option = {
@@ -1196,7 +1309,7 @@ country_event = {
 		ai_chance = { factor = 100 }
 		trigger = { communism < 0.5 }
 		random_list = {
-			51 = {
+			44 = {
 				create_country_leader = {
 					name = "Woodrow Wilson"
 					desc = USA_woodrow_wilson_DESC 
@@ -1212,7 +1325,7 @@ country_event = {
 					name = USA_democratic_party
 				}
 			}
-			27 = { 
+			36 = {
 				create_country_leader = {
 					name = "Theodore Roosevelt"
 					desc = USA_theodore_roosevelt_DESC 
@@ -1228,7 +1341,7 @@ country_event = {
 				}
 				set_country_flag = new_nationalism
 			}
-			22 = {
+			30 = {
 				create_country_leader = { 
 					name = "William H. Taft" 
 					picture = "gfx/leaders/USA/USA_william_h_taft.dds" 
@@ -1333,7 +1446,7 @@ country_event = {
 	# Woodrow Wilson
 	option = {
 		name = ww1_usa.38.a
-		ai_chance = { factor = 100 }
+		ai_chance = { factor = 30 }
 		create_country_leader = {
 			name = "Woodrow Wilson"
 			desc = USA_woodrow_wilson_DESC 
@@ -1470,6 +1583,14 @@ country_event = {
 	immediate = {
 		set_global_flag = american_civil_war
 		hidden_effect = {
+			if = {
+				limit = {
+					PAN = {exists = yes}
+					USA = { owns_state = 685}	
+				}
+				PAN = {transfer_state = 685}
+			}
+			USA = {release = PHI}
 			every_owned_state = {
 				limit = {
 					NOT = { is_csa_state = yes }
@@ -1544,6 +1665,47 @@ country_event = {
 					traits = { } 
 				}
 			}
+			every_country = {
+				limit = { 
+					is_subject_of = USA
+				}
+				USA = { end_puppet = PREV }
+			}
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+						tag = LIB
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}	
+			} 			
 		}
 	}
 
@@ -1551,7 +1713,11 @@ country_event = {
 		name = ww1_usa.41.a
 		news_event = ww1_usa.83
 		USA = {
-			declare_war_on = { target = USB type = annex_everything } 
+			declare_war_on = {
+				target = USB
+				type = civil_war
+			}
+			add_civil_war_target = USB
 		}
 		hidden_effect = { USB = { country_event = { id = ww1_usa.44 days = 180 } } }
 		ai_chance = { factor = 10 }
@@ -1598,6 +1764,14 @@ country_event = {
 	immediate = { 
 		set_global_flag = american_civil_war
 		hidden_effect = {
+			if = {
+				limit = {
+					PAN = {exists = yes}
+					USA = { owns_state = 685}	
+				}
+				PAN = {transfer_state = 685}
+			}
+			USA = {release = PHI}
 			CSA = { inherit_technology = USA }
 			USB = { inherit_technology = USA }
 			every_owned_state = {
@@ -1613,14 +1787,16 @@ country_event = {
 			}
 			every_owned_state = {
 				limit = {
-					NOT = { is_usa_socialist_state = yes }
-					NOT = { is_usa_libertarian_state = yes }
-					NOT = { is_csa_state = yes }
-					NOT = {state = 374 }
-					NOT = {state = 369 }
-					NOT = {state = 361 }
-					NOT = {state = 359 }
-					NOT = {state = 360 }
+					NOT = { 
+					    is_usa_socialist_state = yes
+						is_usa_libertarian_state = yes
+						is_csa_state = yes
+						state = 374
+						state = 369
+						state = 361
+						state = 359
+						state = 360 
+					}
 				}
 				USB = {
 					transfer_state = PREV
@@ -1650,7 +1826,7 @@ country_event = {
 			}
 			USA = { 
 				add_ideas = USA_idea_house_divided
-				set_cosmetic_tag = USA_socialist_color_only
+				hidden_effect = {set_cosmetic_tag = USA_socialist_color_only}
 				transfer_units_fraction = {
 					target = CSA
 					size = 0.35
@@ -1740,17 +1916,72 @@ country_event = {
 					}
 				}
 			}
+			every_country = {
+				limit = { 
+					is_subject_of = USA
+				}
+				USA = { end_puppet = PREV }
+			}
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+						tag = LIB
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}
+			}
 		}
 	}
 	option = {
 		name = ww1_usa.43.a
 		news_event = ww1_usa.83
 		USA = {
-			declare_war_on = { target = CSA type = annex_everything }
-			declare_war_on = { target = USB type = annex_everything }			
+			declare_war_on = {
+				target = USB
+				type = civil_war
+			}
+			add_civil_war_target = USB
+			declare_war_on = {
+				target = CSA
+				type = civil_war
+			}
+			add_civil_war_target = CSA	
 		}
 		hidden_effect = { 
-			CSA = { declare_war_on = { target = USB type = annex_everything } }
+			CSA = {
+				declare_war_on = {
+					target = USB
+					type = civil_war
+				}
+				add_civil_war_target = USB
+			}
 		}
 		ai_chance = { factor = 10 }
 	}
@@ -1784,7 +2015,11 @@ country_event = {
 					original_tag = USB
 					has_government = communism
 				}
-				declare_war_on = { target = USA type = annex_everything } 
+				declare_war_on = {
+					target = CSA
+					type = civil_war
+				}
+				add_civil_war_target = CSA
 				set_capital = 395
 				set_cosmetic_tag = USB_socialist
 				create_country_leader = { 
@@ -1841,7 +2076,11 @@ country_event = {
 					has_government = neutrality
 				}
 				add_ideas = USA_idea_house_divided
-				declare_war_on = { target = USA type = annex_everything } 
+				declare_war_on = {
+					target = USA
+					type = civil_war
+				}
+				add_civil_war_target = USA
 				set_capital = 380
 				set_cosmetic_tag = CSA_deseret
 				create_country_leader = { 
@@ -1850,6 +2089,16 @@ country_event = {
 					expire = "1935.1.1" 
 					ideology = theocracy
 					traits = { } 
+				}
+				set_party_name = { 
+					ideology = neutrality
+					long_name = CSA_deseret_neutrality_party
+					name = CSA_deseret_neutrality_party
+				}
+				set_party_name = { 
+					ideology = democratic
+					long_name = USA_republican_party
+					name = USA_republican_party
 				}
 			}
 		}
@@ -1891,6 +2140,14 @@ country_event = {
 	immediate = { 
 		set_global_flag = american_civil_war
 		hidden_effect = {
+			if = {
+				limit = {
+					PAN = {exists = yes}
+					USA = { owns_state = 685}	
+				}
+				PAN = {transfer_state = 685}
+			}
+			USA = {release = PHI}
 			USB = { inherit_technology = USA }
 			every_owned_state = {
 				limit = {
@@ -1913,7 +2170,7 @@ country_event = {
 			}
 			USA = {
 				add_ideas = USA_idea_house_divided
-				set_cosmetic_tag = USA_socialist_color_only
+				hidden_effect = {set_cosmetic_tag = USA_socialist_color_only}
 				set_capital = 395
 				transfer_units_fraction = {
 					target = USB
@@ -1968,6 +2225,11 @@ country_event = {
 						ideology = conservatism
 						traits = { prohibitionist } 
 					}
+					set_party_name = { 
+						ideology = democratic
+						long_name = USA_democratic_party
+						name = USA_democratic_party
+					}
 					add_popularity = { ideology = fascism popularity = 0.15 }
 					add_popularity = { ideology = neutrality popularity = 0.10 }
 					USB = { country_event = { id = ww1_usa.57 days = 180 } }
@@ -1986,6 +2248,47 @@ country_event = {
 					USB = { country_event = { id = ww1_usa.56 days = 180 } }
 				}
 			}
+			every_country = {
+				limit = { 
+					is_subject_of = USA
+				}
+				USA = { end_puppet = PREV }
+			}
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+						tag = LIB
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}
+			}
 		}
 	}
 	option = {
@@ -1993,7 +2296,11 @@ country_event = {
 		set_global_flag = american_civil_war
 		news_event = ww1_usa.83
 		USA = {
-			declare_war_on = { target = USB type = annex_everything }			
+			declare_war_on = {
+				target = USB
+				type = civil_war
+			}
+			add_civil_war_target = USB
 		}
 		if = {
 			limit = { SOV = { exists = no } } #there is no precedent
@@ -2037,6 +2344,14 @@ country_event = {
 	immediate = { 
 		set_global_flag = american_civil_war
 		hidden_effect = {
+			if = {
+				limit = {
+					PAN = {exists = yes}
+					USA = { owns_state = 685}	
+				}
+				PAN = {transfer_state = 685}
+			}
+			USA = {release = PHI}
 			USB = { inherit_technology = USA }
 			every_owned_state = {
 				limit = {
@@ -2125,6 +2440,47 @@ country_event = {
 					}
 				}
 			}
+			every_country = {
+				limit = { 
+					is_subject_of = USA
+				}
+				USA = { end_puppet = PREV }
+			}
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+						tag = LIB
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}
+			}
 		}
 	}
 	option = {
@@ -2132,7 +2488,11 @@ country_event = {
 		set_global_flag = american_civil_war
 		news_event = ww1_usa.83
 		USA = {
-			declare_war_on = { target = USB type = annex_everything }			
+			declare_war_on = {
+				target = USB
+				type = civil_war
+			}
+			add_civil_war_target = USB
 		}
 		ai_chance = { factor = 10 }
 	}
@@ -2172,6 +2532,55 @@ country_event = {
 	immediate = { 
 		set_global_flag = american_civil_war
 		hidden_effect = {
+			if = {
+				limit = {
+					PAN = {exists = yes}
+					USA = { owns_state = 685}	
+				}
+				PAN = {transfer_state = 685}
+			}
+			USA = {release = PHI}
+			every_country = {
+				limit = { 
+					is_subject_of = USA
+				}
+				USA = { end_puppet = PREV }
+			}
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+						tag = LIB
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}
+			}
 			USB = { inherit_technology = USA }
 			every_owned_state = {
 				limit = {
@@ -2263,6 +2672,11 @@ country_event = {
 						ideology = socialism
 						traits = { bull_moose }
 					}
+					set_party_name = { 
+						ideology = democratic
+						long_name = USA_democratic_party
+						name = USA_democratic_party
+					}
 					add_popularity = { ideology = communism popularity = 0.1 }
 				}
 			}
@@ -2273,7 +2687,11 @@ country_event = {
 		set_global_flag = american_civil_war
 		news_event = ww1_usa.83
 		USA = {
-			declare_war_on = { target = USB type = annex_everything }			
+			declare_war_on = {
+				target = USB
+				type = civil_war
+			}
+			add_civil_war_target = USB		
 		}
 		ai_chance = { factor = 10 }
 	}
@@ -2324,6 +2742,55 @@ country_event = {
 	immediate = { 
 		set_global_flag = american_civil_war
 		hidden_effect = {
+			if = {
+				limit = {
+					PAN = {exists = yes}
+					USA = { owns_state = 685}	
+				}
+				PAN = {transfer_state = 685}
+			}
+			USA = {release = PHI}
+			every_country = {
+				limit = { 
+					is_subject_of = USA
+				}
+				USA = { end_puppet = PREV }
+			}
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+						tag = LIB
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}
+			}
 			USB = { inherit_technology = USA }
 			every_owned_state = {
 				limit = {
@@ -2421,7 +2888,11 @@ country_event = {
 		set_global_flag = american_civil_war
 		news_event = ww1_usa.83
 		USA = {
-			declare_war_on = { target = USB type = annex_everything }			
+			declare_war_on = {
+				target = USB
+				type = civil_war
+			}
+			add_civil_war_target = USB		
 		}
 		ai_chance = { factor = 10 }
 	}
@@ -2472,6 +2943,55 @@ country_event = {
 	immediate = { 
 		set_global_flag = american_civil_war
 		hidden_effect = {
+			if = {
+				limit = {
+					PAN = {exists = yes}
+					USA = { owns_state = 685}	
+				}
+				PAN = {transfer_state = 685}
+			}
+			USA = {release = PHI}
+			every_country = {
+				limit = { 
+					is_subject_of = USA
+				}
+				USA = { end_puppet = PREV }
+			}
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+						tag = LIB
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}
+			}
 			USB = { inherit_technology = USA }
 			every_owned_state = {
 				limit = {
@@ -2544,6 +3064,11 @@ country_event = {
 					ideology = conservatism
 					traits = { prohibitionist } 
 				}
+				set_party_name = {
+					ideology = democratic
+					long_name = USA_democratic_party
+					name = USA_democratic_party
+				}
 			}
 		}
 	}
@@ -2552,7 +3077,11 @@ country_event = {
 		set_global_flag = american_civil_war
 		news_event = ww1_usa.83
 		USA = {
-			declare_war_on = { target = USB type = annex_everything }			
+			declare_war_on = {
+				target = USB
+				type = civil_war
+			}
+			add_civil_war_target = USB		
 		}
 		ai_chance = { factor = 10 }
 	}
@@ -2592,7 +3121,11 @@ country_event = {
 					has_government = neutrality
 				}
 				add_ideas = USA_idea_house_divided
-				declare_war_on = { target = USA type = annex_everything } 
+				declare_war_on = {
+					target = USA
+					type = civil_war
+				}
+				add_civil_war_target = USA
 				set_capital = 359 #Wilson is governor of NJ
 				set_cosmetic_tag = USA_theocratic
 				create_country_leader = {
@@ -2717,7 +3250,11 @@ country_event = {
 					long_name = USA_1776_party
 					name = USA_1776_party
 				}
-				declare_war_on = { target = USB type = annex_everything } 
+				declare_war_on = {
+					target = USB
+					type = civil_war
+				}
+				add_civil_war_target = USB
 				set_politics = {
 					ruling_party = democratic
 					election_frequency = 48
@@ -2789,6 +3326,55 @@ country_event = {
 	immediate = { 
 		set_global_flag = american_civil_war
 		hidden_effect = {
+			if = {
+				limit = {
+					PAN = {exists = yes}
+					USA = { owns_state = 685}	
+				}
+				PAN = {transfer_state = 685}
+			}
+			USA = {release = PHI}
+			every_country = {
+				limit = { 
+					is_subject_of = USA
+				}
+				USA = { end_puppet = PREV }
+			}
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+						tag = LIB
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}
+			}
 			USB = { inherit_technology = USA }
 			every_owned_state = {
 				limit = {
@@ -2890,7 +3476,11 @@ country_event = {
 		set_global_flag = american_civil_war
 		news_event = ww1_usa.83
 		USA = {
-			declare_war_on = { target = USB type = annex_everything }			
+			declare_war_on = {
+				target = USB
+				type = civil_war
+			}
+			add_civil_war_target = USB
 		}
 		ai_chance = { factor = 10 }
 	}
@@ -2943,6 +3533,14 @@ country_event = {
 	immediate = { 
 		set_global_flag = american_civil_war
 		hidden_effect = {
+			if = {
+				limit = {
+					PAN = {exists = yes}
+					USA = { owns_state = 685}	
+				}
+				PAN = {transfer_state = 685}
+			}
+			USA = {release = PHI}
 			USB = { inherit_technology = USA }
 			every_owned_state = {
 				limit = {
@@ -3044,6 +3642,47 @@ country_event = {
 					add_popularity = { ideology = communism popularity = 0.1 }
 				}
 			}
+			every_country = {
+				limit = { 
+					is_subject_of = USA
+				}
+				USA = { end_puppet = PREV }
+			}
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+						tag = LIB
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}	
+			} 
 		}
 	}
 	option = {
@@ -3051,7 +3690,11 @@ country_event = {
 		set_global_flag = american_civil_war
 		news_event = ww1_usa.83
 		USA = {
-			declare_war_on = { target = USB type = annex_everything }			
+			declare_war_on = {
+				target = USB
+				type = civil_war
+			}
+			add_civil_war_target = USB
 		}
 		ai_chance = { factor = 10 }
 	}
@@ -3067,15 +3710,13 @@ country_event = {
 	fire_only_once = yes
 	trigger = {
 		tag = USA
-		is_puppet = yes
+		is_subject = yes
 		has_war_support > 0.5
 		has_army_manpower = {
 			size > 350000
 		}
 	}
 	mean_time_to_happen = { days = 180 }
-	immediate = { 
-	}
 	option = {
 		name = ww1_usa.63.a
 		set_global_flag = american_war_for_independence
@@ -3114,6 +3755,11 @@ country_event = {
 					expire = "1935.1.1"
 					ideology = moderatism
 					traits = { }
+				}
+				set_party_name = {
+					ideology = neutrality
+					long_name = USA_1776_party
+					name = USA_1776_party
 				}
 			}
 		}
@@ -3164,6 +3810,14 @@ country_event = {
 	immediate = { 
 		set_global_flag = american_civil_war
 		hidden_effect = {
+			if = {
+				limit = {
+					PAN = { exists = yes }
+					USA = { owns_state = 685}	
+				}
+				PAN = {transfer_state = 685}
+			}
+			USA = {release = PHI}
 			USB = { inherit_technology = USA }
 			every_owned_state = {
 				limit = {
@@ -3228,6 +3882,52 @@ country_event = {
 					ideology = moderatism
 					traits = { }
 				}
+				set_party_name = { 
+					ideology = neutrality
+					long_name = USA_the_senate
+					name = USA_the_senate
+				}
+			}
+			every_country = {
+				limit = { 
+					is_subject_of = USA
+				}
+				USA = { end_puppet = PREV }
+			}
+			every_country = {
+				limit = { 
+					OR = {
+						tag = CAN
+						tag = MEX
+						tag = CUB
+						tag = HAI
+						tag = DOM
+						tag = GUA
+						tag = HON
+						tag = ELS
+						tag = NIC
+						tag = COS
+						tag = PAN
+						tag = VEN
+						tag = COL
+						tag = ECU
+						tag = PRU
+						tag = BRA
+						tag = BOL
+						tag = CHL
+						tag = PAR
+						tag = ARG
+						tag = URG
+						tag = LIB
+					}
+				}
+				USA = {
+					diplomatic_relation = {
+    					country = PREV
+    					relation = guarantee
+   				    	active = no
+					}
+				}	
 			}
 		}
 	}
@@ -3236,59 +3936,40 @@ country_event = {
 		set_global_flag = american_civil_war
 		news_event = ww1_usa.83
 		USA = {
-			declare_war_on = { target = USB type = annex_everything }			
+			declare_war_on = {
+				target = USB
+				type = civil_war
+			}
+			add_civil_war_target = USB
 		}
 		ai_chance = { factor = 10 }
 	}
 }
 # REACTIONIST RANDOM EVENTS
-country_event = {
-	id = ww1_usa.66
-	hidden = yes	
-	trigger = {
-		tag = USA
-		has_completed_focus = USA_american_reactionism
-		NOT = { has_global_flag = USA_cw_triggered }
-		NOT = { has_completed_focus = USA_land_of_dixie }
-		NOT = { has_completed_focus = USA_revived_states_of_america }
-	}
-	is_triggered_only = yes
-	immediate = {
-		random_list = {
-			33 = {
-				country_event = { id = ww1_usa.67 days = 20 }
-			}
-			33 = { 
-				country_event = { id = ww1_usa.68 days = 20 }
-			}
-			33 = { 
-				country_event = { id = ww1_usa.69 days = 20 }
-			}
-		}
-		if = {
-			limit = {
-				tag = USA
-				has_completed_focus = USA_american_reactionism
-				NOT = { has_global_flag = USA_cw_triggered }
-				NOT = { has_completed_focus = USA_land_of_dixie }
-				NOT = { has_completed_focus = USA_revived_states_of_america }
-			}
-			country_event = { id = ww1_usa.66 days = 95 }
-		}
-	}
-}
 # KKK LYNCHING
 country_event = {
 	title = ww1_usa.67.t
 	desc = ww1_usa.67.d
 	id = ww1_usa.67
 	picture = GFX_report_event_spr_civil_war_faction_defeated
-	is_triggered_only = yes
-
+	trigger = {
+		tag = USA
+		has_completed_focus = USA_american_reactionism
+		has_government = democratic
+		NOT = { has_global_flag = USA_cw_triggered }
+		NOT = { has_completed_focus = USA_land_of_dixie }
+		NOT = { has_completed_focus = USA_revived_states_of_america }
+		NOT = { has_country_flag = random_reactionist_event }
+	}
+	mean_time_to_happen = { days = 30 }
+	immediate = {
+		set_country_flag = { flag = random_reactionist_event days = 90 value = 1 }
+	}
 	option = {
 		name = ww1_usa.67.a
 		ai_chance = { factor = 10 }
 		add_stability = -0.02
+		add_popularity = { ideology = fascism popularity = 0.01 }
 	}
 }
 # PROHIBTIONIST AGITATION
@@ -3297,12 +3978,24 @@ country_event = {
 	desc = ww1_usa.68.d
 	id = ww1_usa.68
 	picture = GFX_report_event_american_hunger_march
-	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		has_completed_focus = USA_american_reactionism
+		has_government = democratic
+		NOT = { has_global_flag = USA_cw_triggered }
+		NOT = { has_completed_focus = USA_land_of_dixie }
+		NOT = { has_completed_focus = USA_revived_states_of_america }
+		NOT = { has_country_flag = random_reactionist_event }
+	}
+	mean_time_to_happen = { days = 30 }
+	immediate = {
+		set_country_flag = { flag = random_reactionist_event days = 90 value = 1 }
+	}
 
 	option = {
 		name = ww1_usa.68.a
 		ai_chance = { factor = 10 }
-		add_political_power = -25
+		add_popularity = { ideology = neutrality popularity = 0.01 }
 	}
 }
 # CLASHES WITH PROGRESSIVES
@@ -3311,62 +4004,52 @@ country_event = {
 	desc = ww1_usa.69.d
 	id = ww1_usa.69
 	picture = GFX_report_event_american_hunger_march
-	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		has_completed_focus = USA_american_reactionism
+		has_government = democratic
+		NOT = { has_global_flag = USA_cw_triggered }
+		NOT = { has_completed_focus = USA_land_of_dixie }
+		NOT = { has_completed_focus = USA_revived_states_of_america }
+		NOT = { has_country_flag = random_reactionist_event }
+	}
+	mean_time_to_happen = { days = 30 }
+	immediate = {
+		set_country_flag = { flag = random_reactionist_event days = 90 value = 1 }
+	}
 
 	option = {
 		name = ww1_usa.69.a
 		ai_chance = { factor = 10 }
 		add_stability = -0.01
-		add_popularity = { ideology = democratic popularity = -0.005 }
+		add_popularity = { ideology = democratic popularity = -0.01 }
 	}
 }
 # SOCIALIST RANDOM EVENTS
-country_event = {
-	id = ww1_usa.70
-	hidden = yes	
-	trigger = {
-		tag = USA
-		has_completed_focus = USA_radicalism_era
-		NOT = { has_global_flag = USA_cw_triggered }
-		NOT = { has_completed_focus = USA_socialist_democracy }
-	}
-	is_triggered_only = yes
-	immediate = {
-		random_list = {
-			33 = {
-				country_event = { id = ww1_usa.71 days = 20 }
-			}
-			33 = { 
-				country_event = { id = ww1_usa.72 days = 20 }
-			}
-			33 = { 
-				country_event = { id = ww1_usa.73 days = 20 }
-			}
-		}
-		if = {
-			limit = {
-				tag = USA
-				has_completed_focus = USA_radicalism_era
-				NOT = { has_global_flag = USA_cw_triggered }
-				NOT = { has_completed_focus = USA_socialist_democracy }
-			}
-			country_event = { id = ww1_usa.70 days = 95 }
-		}
-	}
-}
 # CLASHES WITH REACTIONISTS
 country_event = {
 	title = ww1_usa.71.t
 	desc = ww1_usa.71.d
 	id = ww1_usa.71
 	picture = GFX_report_event_american_hunger_march
-	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		has_government = democratic
+		has_completed_focus = USA_radicalism_era
+		NOT = { has_global_flag = USA_cw_triggered }
+		NOT = { has_completed_focus = USA_socialist_democracy }
+		NOT = { has_country_flag = random_socialist_event }
+	}
+	mean_time_to_happen = { days = 30 }
+	immediate = {
+		set_country_flag = { flag = random_socialist_event days = 90 value = 1 }
+	}
 
 	option = {
 		name = ww1_usa.71.a
 		ai_chance = { factor = 10 }
 		add_stability = -0.01
-		add_popularity = { ideology = democratic popularity = -0.005 }
+		add_popularity = { ideology = democratic popularity = -0.01 }
 	}
 }
 # POLITICAL ATTACK (саботаж региональных администраций, террористические атаки)
@@ -3375,7 +4058,18 @@ country_event = {
 	desc = ww1_usa.72.d
 	id = ww1_usa.72
 	picture = GFX_report_event_american_hunger_march
-	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		has_government = democratic
+		has_completed_focus = USA_radicalism_era
+		NOT = { has_global_flag = USA_cw_triggered }
+		NOT = { has_completed_focus = USA_socialist_democracy }
+		NOT = { has_country_flag = random_socialist_event }
+	}
+	mean_time_to_happen = { days = 30 }
+	immediate = {
+		set_country_flag = { flag = random_socialist_event days = 90 value = 1 }
+	}
 
 	option = {
 		name = ww1_usa.72.a
@@ -3389,7 +4083,18 @@ country_event = {
 	desc = ww1_usa.73.d
 	id = ww1_usa.73
 	picture = GFX_report_event_generic_rifles
-	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		has_government = democratic
+		has_completed_focus = USA_radicalism_era
+		NOT = { has_global_flag = USA_cw_triggered }
+		NOT = { has_completed_focus = USA_socialist_democracy }
+		NOT = { has_country_flag = random_socialist_event }
+	}
+	mean_time_to_happen = { days = 30 }
+	immediate = {
+		set_country_flag = { flag = random_socialist_event days = 90 value = 1 }
+	}
 
 	option = {
 		name = ww1_usa.73.a
@@ -3615,7 +4320,7 @@ country_event = {
 	option = {
 		name = ww1_usa.80.b
 		add_stability = -0.02
-		random_country = {
+		every_country = {
 			limit = {
 				exists = yes
 				OR = {
@@ -4005,7 +4710,7 @@ country_event = {
 				traits = { prohibitionist }
 			}
 		}
-		ai_chance = { factor = 55 }
+		ai_chance = { factor = 51 }
 	}
 	option = {
 		name = ww1_usa.92.b #Republicans
@@ -4018,19 +4723,19 @@ country_event = {
 			}
 		}
 		create_country_leader = {
-			name = "Charles Hughes"
+			name = "Charles Evans Hughes"
 			picture = "gfx/leaders/USA/USA_charles_hughes.dds"
 			expire = "1935.1.1"
 			ideology = liberalism
 			traits = { }
 		}
-		set_party_name = { 
+		set_party_name = {
 			ideology = democratic
 			long_name = USA_republican_party
 			name = USA_republican_party
 		}
 		ai_chance = {
-			factor = 45
+			factor = 49
 			modifier = {
 				is_historical_focus_on = yes
 				has_country_leader = { name = "Woodrow Wilson" ruling_only = yes }
@@ -4047,7 +4752,7 @@ country_event = {
 			} 
 		}
 		ai_chance = { 
-			factor = 45
+			factor = 51
 			modifier = {
 				is_historical_focus_on = yes
 				has_country_leader = { name = "Woodrow Wilson" ruling_only = yes }
@@ -4414,10 +5119,7 @@ country_event = {
 		USA = {
 			if = {
 				limit = {
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Man the Guns"
-					}
+					has_dlc = "Together for Victory"
 				}
 				hidden_effect = {
 					CAN = { drop_cosmetic_tag = yes }
@@ -4439,10 +5141,7 @@ country_event = {
 							is_subject_of = ENG
 						}
 					}
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Man the Guns"
-					}
+					has_dlc = "Together for Victory"
 				}
 				set_autonomy = {
 					target = QBC
@@ -4547,10 +5246,7 @@ country_event = {
 		USA = {
 			if = {
 				limit = {
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Man the Guns"
-					}
+					has_dlc = "Together for Victory"
 				}
 				set_autonomy = {
 					target = LIB
@@ -4571,12 +5267,6 @@ country_event = {
 				factor = 0.1
 				is_in_faction = yes
 			}
-			modifier = {
-				factor = 0
-				any_neighbor_state = {
-					is_controlled_by = USA
-				}
-			}
 		}
 	}
 	option = {
@@ -4588,35 +5278,6 @@ country_event = {
 			}
 		}
 		ai_chance = { factor = 10 }
-	}
-}
-# RID OFF BRITTS
-###############
-country_event = {
-	title = ww1_usa.108.t
-	desc = ww1_usa.108.d
-	id = ww1_usa.108
-	picture = GFX_report_event_destroyers
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = ww1_usa.108.a
-		every_owned_state = {
-			limit = { 
-				OR = {
-					is_on_continent = south_america 
-					is_on_continent = north_america
-				}
-			}
-			USA = { transfer_state = PREV }
-		}
-		ai_chance = { factor = 75 }
-	}
-	option = {
-		name = ww1_usa.108.b
-		USA = { country_event = ww1_usa.109 }
-		ai_chance = { factor = 25 }
 	}
 }
 # RID OFF BRITTS
@@ -4695,7 +5356,7 @@ country_event = {
 		name = ww1_usa.110.b
 		USA = {
 			if = {
-				limit = { CAN = { is_puppet_of = USA } }
+				limit = { CAN = { is_subject_of = USA } }
 				end_puppet = CAN
 			}
 			create_wargoal = {
@@ -4756,7 +5417,7 @@ country_event = {
 		name = ww1_usa.110.b
 		USA = {
 			if = {
-				limit = { MEX = { is_puppet_of = USA } }
+				limit = { MEX = { is_subject_of = USA } }
 				end_puppet = MEX
 			}
 			create_wargoal = {
@@ -5156,10 +5817,7 @@ country_event = {
 		USA = {
 			if = {
 				limit = {
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Man the Guns"
-					}
+					has_dlc = "Together for Victory"
 				}
 				hidden_effect = {
 					MEX = { drop_cosmetic_tag = yes }

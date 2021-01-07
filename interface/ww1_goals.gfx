@@ -1,4 +1,26 @@
 spriteTypes = {
+	SpriteType = {
+		name = "GFX_focus_eng_red_empire"
+		texturefile = "gfx/interface/goals/focus_eng_red_empire.dds"
+	}
+	SpriteType = {
+		name = "GFX_focus_ENG_All_The_Kings_Men"
+		texturefile = "gfx/interface/goals/focus_ENG_All_The_Kings_Men.dds"
+	}
+	SpriteType = {
+		name = "GFX_focus_ger_kaiserreich"
+		texturefile = "gfx/interface/goals/focus_ger_kaiserreich.dds"
+	}
+	
+	SpriteType = {
+		name = "GFX_goal_based_british_icon"
+		texturefile = "gfx/interface/goals/ENG_Royal.tga"			
+	}
+
+	SpriteType = {
+		name = "GFX_focus_eng_Princess_Victoria"
+		texturefile = "gfx/interface/goals/focus_eng_Princess_Victoria.dds"			
+	}
 	
 	SpriteType = {
 		name = "GFX_focus_ger_backstab"
@@ -96,6 +118,10 @@ spriteTypes = {
 	SpriteType = {
 		name = "GFX_focus_generic_ultranationalist_monarchy"
 		texturefile = "gfx/interface/goals/generic_ultranationalist_monarchy.dds"
+	}
+	SpriteType = { 
+	    name = "GFX_focus_eng_all_the_kings_men"
+	    texturefile = "gfx/interface/goals/focus_eng_all_the_kings_men.dds"
 	}
 	
 	#### GERMANY UPDATE
@@ -380,7 +406,88 @@ spriteTypes = {
 		name = "GFX_hoi4tgw_blackfocus"
 		texturefile = "gfx/interface/goals/hoi4tgw/ww1_nationalfocus_blackrus.dds"
 	}
+	
+	### 24.09.2020 UPDATE
+	SpriteType = {
+		name = "GFX_focus_deal_with_baltics"
+		texturefile = "gfx/interface/goals/focus_deal_with_baltics.dds"			
+	}
+	SpriteType = {
+		name = "GFX_focus_deal_with_greece"
+		texturefile = "gfx/interface/goals/focus_deal_with_greece.dds"			
+	}
+	SpriteType = {
+		name = "GFX_focus_deal_with_norway"
+		texturefile = "gfx/interface/goals/focus_deal_with_norway.dds"			
+	}
+	SpriteType = {
+		name = "GFX_focus_deal_with_denmark"
+		texturefile = "gfx/interface/goals/focus_deal_with_denmark.dds"			
+	}
+	SpriteType = {
+		name = "GFX_focus_deal_with_sweden"
+		texturefile = "gfx/interface/goals/focus_deal_with_sweden.dds"			
+	}
+	
+	SpriteType = {
+		name = "GFX_goal_support_socialism"
+		texturefile = "gfx/interface/goals/goal_generic_support_socialism.dds"			
+	}
 
-########
+	# Korean focus
+	SpriteType = {
+		name = "GFX_KOR_ryukyu_kingdom"
+		texturefile = "gfx/interface/goals/KOR/KOR_ryukyu_kingdom.dds"			
+	}
 
+	SpriteType = {
+		name = "GFX_KOR_japan_and_chosen_are_one_body"
+		texturefile = "gfx/interface/goals/KOR/KOR_japan_and_chosen_are_one_body.dds"			
+	}
+
+	SpriteType = {
+		name = "GFX_KOR_restoration_of_the_monarchy"
+		texturefile = "gfx/interface/goals/KOR/KOR_restoration_of_the_monarchy.dds"			
+	}
+
+	SpriteType = {
+		name = "GFX_KOR_constitutional_monarchy"
+		texturefile = "gfx/interface/goals/KOR/KOR_constitutional_monarchy.dds"			
+	}
+
+	SpriteType = {
+		name = "GFX_KOR_democratic_republic"
+		texturefile = "gfx/interface/goals/KOR/KOR_democratic_republic.dds"			
+	}
+
+	SpriteType = {
+		name = "GFX_KOR_military_government"
+		texturefile = "gfx/interface/goals/KOR/KOR_military_government.dds"			
+	}
+
+	SpriteType = {
+		name = "GFX_KOR_establish_government"
+		texturefile = "gfx/interface/goals/KOR/KOR_establish_government.dds"			
+	}
+
+	SpriteType = {
+		name = "GFX_KOR_start_eagle_project"
+		texturefile = "gfx/interface/goals/KOR/KOR_start_eagle_project.dds"			
+	}
+
+	SpriteType = {
+		name = "GFX_KOR_start_rearmament"
+		texturefile = "gfx/interface/goals/KOR/KOR_start_rearmament.dds"			
+	}
+
+	SpriteType = {
+		name = "GFX_KOR_god_help_our_emperor"
+		texturefile = "gfx/interface/goals/KOR/KOR_god_help_our_emperor.dds"			
+	}
+
+	# Nationalist France
+	SpriteType = {
+		name = "GFX_focus_generic_vichy_france_triumphant_focus"
+		texturefile = "gfx/interface/goals/focus_generic_vichy_france_triumphant.dds"			
+	}
 }

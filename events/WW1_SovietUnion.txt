@@ -447,7 +447,7 @@ country_event = {
 					ideology = centrism
 					traits = { }
 				}
-				add_ideas = { id = SOV_idea_kronstadt }
+				add_ideas = SOV_idea_kronstadt
 			}
 		}
 		set_global_flag = kronstadt_rebellion
@@ -574,11 +574,9 @@ country_event = {
 		remove_ideas = { SOV_idea_influence_of_revolution }
 		add_war_support = 0.25
 		transfer_state = 784 #Вильно
-		if = {
-			limit = { owns_state = 96 LIT = { exists = yes } }
-			LIT = { transfer_state = 96 }
-			96 = { remove_core_of = POL }
-		}
+		transfer_state = 97 
+		transfer_state = 773 
+		transfer_state = 766 
 		add_state_core = 784
 		add_state_core = 95
 		add_state_core = 94
@@ -652,13 +650,11 @@ country_event = {
 		random_country = {
 			limit = {
 				controls_state = 808
-				controls_state = 93
 				NOT = { has_war_with = POL }
 				NOT = { is_in_faction_with = SOV }
 			}
 			POL = { 
 				transfer_state = 808
-				transfer_state = 93
 			}
 		}
 		SOV = { 
@@ -806,8 +802,8 @@ country_event = {
 			transfer_state = 93
 			transfer_state = 94
 			transfer_state = 95
-			transfer_state = 96
 			transfer_state = 97
+			transfer_state = 773
 			transfer_state = 808
 		}		
 		ai_chance = { factor = 100 }
@@ -992,7 +988,7 @@ country_event = {
 					ideology = centrism
 					traits = { }
 				}
-				add_ideas = { id = SOV_idea_kronstadt }
+				add_ideas = SOV_idea_kronstadt
 			}
 		}
 		news_event = ww1_soviet.25
@@ -1022,9 +1018,9 @@ country_event = {
 			modifier = {
 				factor = 10
 				NOT = {
-					tag = LAT
+					tag = LTR
 					tag = LIT
-					tag = EST
+					tag = ESR
 					tag = POL
 					tag = FIN
 				}				
@@ -1042,11 +1038,11 @@ country_event = {
 		ai_chance = {
 			factor = 0
 			modifier = {
-				factor = 10
+				add = 10
 				OR = {
-					tag = LAT
+					tag = LTR
 					tag = LIT
-					tag = EST
+					tag = ESR
 					tag = POL
 					tag = FIN
 				}
@@ -1195,7 +1191,15 @@ country_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = ww1_soviet.31.a			
+		name = ww1_soviet.31.a
+		every_state = {
+			limit = { is_core_of = RUS is_fully_controlled_by = SOV }
+			SOV = { transfer_state = PREV }
+		}
+		every_state = {
+			limit = { is_core_of = SOV is_fully_controlled_by = RUS }
+			RUS = { transfer_state = PREV }
+		}
 		every_country = {
 		    limit = {
 				is_in_faction_with = RUS

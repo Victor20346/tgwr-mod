@@ -354,6 +354,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			AUH = {
+				add_state_claim = 159
 				add_state_claim = 160
 			}
 			ITA = {
@@ -377,13 +378,11 @@ focus_tree = {
 			NOT = { RUS = { is_in_faction_with = GER } }
 		}
 		completion_reward = {
-			add_state_claim = 10
+			add_political_power = 150
+			add_war_support = 0.05
 			add_state_claim = 98
 			add_state_claim = 87
-			add_state_claim = 90
-			add_state_claim = 97
-			add_state_claim = 92
-		}	
+		}
 		ai_will_do = {
 			factor = 1
 		}
@@ -499,7 +498,7 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-		will_lead_to_war_with = PER
+
 		available = {
 			is_subject = no
 		}
@@ -507,7 +506,7 @@ focus_tree = {
 			AUH = { exists = no }
 		}
 		completion_reward = {
-			unlock_decision_category_tooltip = GER_decision_joint_staff #бафф союзников, либо получение генералов
+			unlock_decision_tooltip = GER_control_austrian_planning
 		}	
 		ai_will_do = {
 			factor = 1
@@ -1243,7 +1242,7 @@ focus_tree = {
 				long_name = GER_democratic_party_zentrum_long
 				name = GER_democratic_party_zentrum
 			}
-			set_cosmetic_tag = GER_constitution
+			set_cosmetic_tag = GER_confederation
 			add_ideas = GER_idea_wilhelm_ii
 		}	
 		ai_will_do = {
@@ -1941,7 +1940,7 @@ focus_tree = {
 			focus = GER_constitutional_compromise
 		}
 		#mutually_exclusive = {
-		#	focus = GER_claim_mittleafrika
+		#	focus = GER_claim_mittelafrika
 		#}
 		x = 27
 		y = 2
@@ -2042,7 +2041,7 @@ focus_tree = {
 							infantry = { x = 0 y = 1 }
 							infantry = { x = 0 y = 2 }
 							infantry = { x = 0 y = 3 }
-							infantry = { x = 1 y = 0
+							infantry = { x = 1 y = 0 }
 						}
 						support = {
 							military_police = { x = 0 y = 0 }
@@ -2086,30 +2085,29 @@ focus_tree = {
 				set_cosmetic_tag = PNG_GER
 			}
 			puppet = PNG
-				if = {
-					limit = {
-						OR = {
-							has_dlc = "Man the Guns"
-							has_dlc = "Together for Victory"
-						}
-					}
-					set_autonomy = {
-						target = PNG
-						autonomous_state = autonomy_colony
-						freedom_level = 0.15
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Man the Guns"
+						has_dlc = "Together for Victory"
 					}
 				}
-				PNG = {
-					set_politics = {
-					    ruling_party = neutrality
-					    elections_allowed = no
-					}
-					set_popularities = {
-					    democratic = 40
-					    fascism = 0
-					    communism = 0
-					    neutrality = 60
-					}
+				set_autonomy = {
+					target = PNG
+					autonomous_state = autonomy_colony
+					freedom_level = 0.15
+				}
+			}
+			PNG = {
+				set_politics = {
+				    ruling_party = neutrality
+				    elections_allowed = no
+				}
+				set_popularities = {
+				    democratic = 40
+				    fascism = 0
+				    communism = 0
+				    neutrality = 60
 				}
 			}
 		}
@@ -2180,7 +2178,6 @@ focus_tree = {
 		y = 3
 		available = {
 			has_full_control_of_state = 539
-			has_full_control_of_state = 773
 			has_full_control_of_state = 777
 			has_full_control_of_state = 794
 		}
@@ -2198,16 +2195,20 @@ focus_tree = {
 					transfer_state = 814 
 				}
 			}
-			CMR = {
-				transfer_state = 539
-				transfer_state = 773
-				transfer_state = 813
-				hidden_effect = {
-					add_state_core = 539
-					add_state_core = 773
-					add_state_core = 813
+			every_state = {
+				limit = {
+					is_core_of = CMR
+					is_owned_by = GER
 				}
-				set_cosmetic_tag = CMR_GER
+				CMR = {
+				    transfer_state = PREV
+				}
+			}
+			CMR = {
+				hidden_effect = {
+					set_cosmetic_tag = CMR_GER
+				}
+				
 			}
 			puppet = CMR
 			hidden_effect = {
@@ -2288,18 +2289,15 @@ focus_tree = {
 		available = {
 			has_full_control_of_state = 546
 			has_full_control_of_state = 768
-			has_full_control_of_state = 769
 		}
 		completion_reward = {
 			add_political_power = 75
 			TZN = {
-				transfer_state = 769
 				transfer_state = 768
 				transfer_state = 546
 				hidden_effect = {
 					add_state_core = 768
 					add_state_core = 546
-					add_state_core = 769
 					add_state_claim = 547
 					add_state_claim = 792
 				}
@@ -2515,16 +2513,7 @@ focus_tree = {
 				threat = 5
 				name = GER_moroccan_crisis
 			}
-			every_state = {
-				limit = {
-					OR = {
-		   			    state = 810
-						state = 461
-						state = 462
-					}
-				}			
-            	add_claim_by = ROOT
-			}
+			add_state_claim = 810
 			FRA = { country_event = { id = ww1_morocco.6 days = 2 } }
 		}	
 		ai_will_do = {
@@ -2532,7 +2521,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GER_claim_mittleafrika
+		id = GER_claim_mittelafrika
 		icon = GFX_goal_tfv_saf_support_german_coup
 		cost = 10
 		prerequisite = {
@@ -2550,7 +2539,7 @@ focus_tree = {
 		completion_reward = {
 			add_named_threat = {
 				threat = 2
-				name = GER_claim_mittleafrika
+				name = GER_claim_mittelafrika
 			}
 			every_state = {
 				limit = {
@@ -2573,6 +2562,7 @@ focus_tree = {
 						state = 660
 						state = 274
 						state = 558
+						state = 769 
 					}
 				}			
             	add_claim_by = ROOT
@@ -2587,7 +2577,7 @@ focus_tree = {
 		icon = GFX_goal_generic_more_territorial_claims
 		cost = 10
 		prerequisite = {
-			focus = GER_claim_mittleafrika
+			focus = GER_claim_mittelafrika
 		}
 		x = 30
 		y = 3
@@ -2613,15 +2603,11 @@ focus_tree = {
 		icon = GFX_focus_generic_industry_1
 		cost = 10
 		prerequisite = {
-			focus = GER_claim_mittleafrika
+			focus = GER_claim_mittelafrika
 		}
 		x = 32
 		y = 3
 		available = {
-			OR = {
-				has_full_control_of_state = 773
-				CMR = { has_full_control_of_state = 773 }
-			}
 			OR = {
 				has_full_control_of_state = 539
 				CMR = { has_full_control_of_state = 539 }
@@ -2648,7 +2634,6 @@ focus_tree = {
 			CMR = {
 				hidden_effect = {
 					add_state_core = 539
-					add_state_core = 773
 				}
 				set_cosmetic_tag = CMR_GER
 			}
@@ -2818,10 +2803,6 @@ focus_tree = {
 				has_full_control_of_state = 768
 				TZN = { has_full_control_of_state = 768 }
 			}
-			OR = {
-				has_full_control_of_state = 769
-				TZN = { has_full_control_of_state = 769 }
-			}
 		}
 		cancel_if_invalid = yes
 		continue_if_invalid = no
@@ -2840,7 +2821,6 @@ focus_tree = {
 				hidden_effect = {
 					add_state_core = 768
 					add_state_core = 546
-					add_state_core = 769
 				}
 				set_cosmetic_tag = TZN_GER
 			}
@@ -4057,7 +4037,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GER_kaiserreich
-		icon = GFX_focus_ger_return_of_the_kaiser
+		icon = GFX_focus_ger_kaiserreich
 		cost = 10
 		available = {
 			OR = {
@@ -4091,7 +4071,10 @@ focus_tree = {
 		cost = 10
 		available = {
 			OR = {
-				is_subject = yes
+				AND = {
+					is_subject = yes
+					NOT = { is_subject_of = AUH }
+				}
 				has_country_flag = great_war_loser
 			}
 		}
@@ -4215,14 +4198,13 @@ focus_tree = {
 		y = 10
 		completion_reward = {
 			remove_ideas = { GER_idea_reparations }
-			GER = {
-				every_state = {
-					limit = {
-						is_owned_by = FRA 
-						is_core_of = GER
-					}
-					transfer_state = PREV
+			every_state = {
+				limit = {
+					is_owned_by = FRA 
+					is_core_of = GER
+					NOT = { is_core_of = FRA }
 				}
+				GER = { transfer_state = PREV }
 			}
 			add_stability = -0.1
 			add_popularity = {
@@ -4376,11 +4358,17 @@ focus_tree = {
 		prerequisite = {
 			focus = GER_sturmabteilung
 		}
+		available = {
+		    has_government = fascism	
+		}	
 		x = 10
 		y = 14
 		ai_will_do = {
 			factor = 100
 		}
+		completion_reward = {
+			add_ideas = GER_ss_idea
+		}	
 	}
 	focus = {
 		id = GER_unternehmen_kolibri
@@ -4784,6 +4772,7 @@ focus_tree = {
 		    GER = {
 			    add_state_claim = 17
 				add_state_claim = 735
+				add_state_claim = 834
 				add_state_claim = 762
 				add_state_claim = 21
 				create_wargoal = {
@@ -5126,9 +5115,9 @@ focus_tree = {
 					   is_in_faction = no
 					} 
 			    }
-		        create_faction = GER_reichspakt
+		        create_faction = reichspakt
 				else = {
-					set_faction_name = GER_reichspakt
+					set_faction_name = reichspakt
 				}	
 				
 		    }
@@ -5889,7 +5878,9 @@ focus_tree = {
 		}
 		x = 18
 		y = 7
-
+		completion_reward = {
+			add_ideas = GER_zeppelin_bombing 
+		}
 	}
 	focus = {
 		id = GER_aviation_cult
@@ -5942,7 +5933,14 @@ focus_tree = {
 		}
 		x = 17
 		y = 6
-
+		completion_reward = {
+			add_tech_bonus = {
+				name = GER_naval_aviation_corps
+				bonus = 1
+				uses = 2
+				category = naval_air
+			}
+		}
 	}
 	focus = {
 		id = GER_defender_of_the_faith

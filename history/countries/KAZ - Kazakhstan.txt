@@ -1,4 +1,4 @@
-﻿capital = 588 #Semipalatinsk
+﻿capital = 583 #Semipalatinsk
 
 set_research_slots = 2
 set_stability = 0.38
@@ -15,7 +15,14 @@ create_country_leader = {
 	name = "Alikhan Bukeikhanov"
 	picture="gfx/leaders/KAZ/KAZ_Alikhan_Bukeikhanov.dds"
 	expire="1935.1.1" 
-	ideology = conservatism
+	ideology = liberalism
+	traits = {} 
+}
+create_country_leader = {
+	name = "Alibi Dzhangildin"
+	picture="gfx/leaders/KAZ/KAZ_Alibi_Dzhangildin.dds"
+	expire="1935.1.1" 
+	ideology = leninism
 	traits = {} 
 }
 set_technology = {
@@ -25,16 +32,16 @@ set_technology = {
 	tech_recon = 1
 }
 set_politics = {
-	ruling_party = neutrality
-	last_election = "1910.1.1" 
+	ruling_party = democratic
+	last_election = "1909.12.13" 
 	election_frequency = 48 
-	elections_allowed = no 
+	elections_allowed = yes 
 }	
 set_popularities = {
 	fascism = 2
-	communism = 13
-	democratic = 11
-	neutrality = 74
+	communism = 29
+	democratic = 33
+	neutrality = 36
 }
 
 

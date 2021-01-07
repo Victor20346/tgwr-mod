@@ -14,9 +14,18 @@ create_country_leader={
 	traits={  } 
 }
 
-create_field_marshal={ 
+create_country_leader={
+	name = "Nikola I"
+	picture="gfx/leaders/MNT/MNT_nikola_i.dds"
+	expire="1935.1.1"
+	ideology=fundamentalism
+	traits={ }
+}
+
+create_corps_commander={ 
 	name = "Janko Vukotić"
-	traits={ offensive_doctrine } 
+	traits={ } 
+	picture="gfx/leaders/MNT/MNT_janko_vukotic_temp.dds"
 	skill=3 
 	attack_skill = 3
 	defense_skill = 2

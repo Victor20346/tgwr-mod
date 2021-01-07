@@ -6,8 +6,14 @@ set_war_support = 0.05
 set_convoys = 80
 
 create_country_leader = { 
+	name = "Edward Anseele" 
+	picture = "gfx/leaders/BEL/BEL_edward_anseele.dds" 
+	expire = "1935.1.1" 
+	ideology = marxism
+	traits = {  } 
+}
+create_country_leader = { 
 	name = "Charles de Broqueville" 
-	desc = BEL_albert_i_DESC
 	picture = "gfx/leaders/BEL/BEL_charles_de_broqueville.dds" 
 	expire = "1935.1.1" 
 	ideology = conservatism
@@ -23,7 +29,7 @@ create_country_leader = {
 }
 create_country_leader = {
 	name = "August Borms"
-	picture = "gfx/leaders/GER/Portrait_Germany_Generic_land_2.dds"
+	picture = "gfx/leaders/BEL/BEL_august_borms.dds"
 	expire = "1935.1.1"
 	ideology = nazism
 	traits = { german_agent }
@@ -31,7 +37,7 @@ create_country_leader = {
 create_field_marshal = {
 	name = "Albert I" 
 	id=9009
-	portrait_path = "gfx/leaders/BEL/albert_general.dds"
+	portrait_path = "gfx/leaders/BEL/BEL_albert_general.dds"
 	traits = { offensive_doctrine politically_connected media_personality }
 	skill = 3
 	attack_skill = 1
@@ -42,7 +48,7 @@ create_field_marshal = {
 
 create_corps_commander = {
 	name = "Gérard Leman"
-	portrait_path="gfx/leaders/BEL/BEL_Gerard_Leman.dds" 
+	portrait_path="gfx/leaders/BEL/BEL_gerard_leman.dds" 
 	traits = { trait_engineer old_guard trait_cautious } 
 	skill = 3 
 	attack_skill = 3
@@ -52,7 +58,7 @@ create_corps_commander = {
 }
 create_corps_commander = {  
 	name = "Léon de Witte"
-	portrait_path="gfx/leaders/BEL/BEL_de_Witte_de_Haelen.dds" 
+	portrait_path="gfx/leaders/BEL/BEL_leon_de_witte.dds" 
 	traits = { cavalry_officer } 
 	skill = 2
 	attack_skill = 3
@@ -60,9 +66,19 @@ create_corps_commander = {
 	planning_skill = 2
 	logistics_skill = 1
 }
+create_corps_commander = {  
+	name = "Charles Tombeur"
+	portrait_path="gfx/leaders/BEL/tombeur2.dds" 
+	traits = { jungle_rat } 
+	skill = 2
+	attack_skill = 2
+	defense_skill = 2
+	planning_skill = 2
+	logistics_skill = 3
+}
 create_corps_commander = {
 	name = "Albert van Rode"
-	portrait_path="gfx/leaders/BEL/BEL_van_Rode.dds" 
+	portrait_path="gfx/leaders/BEL/BEL_albert_van_rode.dds" 
 	traits = {  } 
 	skill = 2
 	attack_skill = 1
@@ -118,8 +134,9 @@ create_corps_commander = {
 	add_ideas = {
 		ww1_Scramble_for_Africa
 		volunteer_only
-		idea_pacifism
 		BEL_idea_albert_i
+		neutrality_idea
+		BEL_idea_pacifism
 	}
 
 }

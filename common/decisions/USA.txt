@@ -1,3 +1,135 @@
+political_actions = {
+	USA_rally_the_prohibitionists = {
+		visible = {
+			has_completed_focus = USA_american_reactionism
+			NOT = { has_government = neutrality }
+		}
+		cost = 25
+		days_re_enable = 35
+		remove_effect = {
+			add_stability = -0.02
+			add_popularity = { ideology = neutrality popularity = 0.03 }
+			add_popularity = { ideology = fascism popularity = 0.03 }
+		}
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				OR = {
+					neutrality > 0.5
+					democratic < 0.5
+					date > 1913.1.1
+				}
+				factor = 0
+			}
+		}
+	}
+	USA_cooperation_of_democrats_and_prohibitionists = {
+		visible = {
+			has_completed_focus = USA_american_reactionism
+			NOT = { has_government = neutrality }
+		}
+		cost = 25
+		days_re_enable = 35
+		remove_effect = {
+			add_popularity = { ideology = neutrality popularity = 0.02 }
+			add_popularity = { ideology = democratic popularity = -0.02 }
+		}
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				OR = {
+					neutrality > 0.5
+					democratic < 0.5
+					date > 1913.1.1
+				}
+				factor = 0
+			}
+		}
+	}
+	USA_police_raid_on_unions = {
+		visible = {
+			has_completed_focus = USA_american_reactionism
+			NOT = { has_government = communism }
+		}
+		days_re_enable = 35
+		remove_effect = {
+			add_stability = -0.02
+			add_popularity = { ideology = communism popularity = -0.02 }
+			add_popularity = { ideology = neutrality popularity = 0.02 }
+		}
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				has_stability < 0.30
+				factor = 0
+			}
+		}
+	}
+	USA_rally_the_unions = {
+		visible = {
+			has_completed_focus = USA_radicalism_era
+			NOT = { has_government = communism }
+		}
+		cost = 25
+		days_re_enable = 35
+		remove_effect = {
+			add_stability = -0.02
+			add_popularity = { ideology = communism popularity = 0.03 }
+			add_popularity = { ideology = democratic popularity = 0.03 }
+		}
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				OR = {
+					communism > 0.5
+					date > 1913.1.1
+				}
+				factor = 0
+			}
+		}
+	}
+	USA_pressure_on_reactionary_senators = {
+		visible = {
+			has_completed_focus = USA_radicalism_era
+			NOT = { has_government = communism }
+		}
+		cost = 25
+		days_re_enable = 35
+		remove_effect = {
+			add_popularity = { ideology = communism popularity = 0.02 }
+			add_popularity = { ideology = democratic popularity = -0.02 }
+		}
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				OR = {
+					communism > 0.5
+					date > 1913.1.1
+				}
+				factor = 0
+			}
+		}
+	}
+	USA_hunting_for_KKK = {
+		visible = {
+			has_completed_focus = USA_radicalism_era
+			NOT = { has_government = fascism }
+		}
+		days_re_enable = 35
+		remove_effect = {
+			add_stability = -0.02
+			add_popularity = { ideology = fascism popularity = -0.02 }
+			add_popularity = { ideology = communism popularity = 0.02 }
+		}
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				has_stability < 0.30
+				factor = 0
+			}
+		}
+	}
+}
 USA_interventionalism = {
 	USA_occupation_of_haiti = {
 		icon = generic_prepare_civil_war
@@ -11,10 +143,10 @@ USA_interventionalism = {
 		}
 		available = {
 			#any_war_score < 39
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			HAI = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -66,10 +198,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			CUB = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -121,10 +253,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			DOM = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -177,10 +309,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			NIC = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -233,10 +365,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			HON = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -289,10 +421,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			ELS = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -345,10 +477,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			GUA = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -401,10 +533,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			COS = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -457,10 +589,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			PAN = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -514,10 +646,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			COL = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -568,10 +700,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			VEN = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -622,10 +754,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			PRU = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -676,10 +808,10 @@ USA_interventionalism = {
 			}
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			is_in_faction = no
 			ECU = {
-				is_puppet = no
+				is_subject = no
 				is_in_faction = no
 			}
 			NOT = { has_country_flag = banana_wars }
@@ -726,7 +858,7 @@ USA_interventionalism = {
 			tag = USA
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			PHI = { exists = no }
 		}
 		visible = {
@@ -776,7 +908,7 @@ USA_russian_intervention = {
 	USA_intervene_in_murmansk = {
 		allowed = { tag = USA }
 		available = {
-			is_puppet = no
+			is_subject = no
 			SOV = { has_war_with = RUS }
 			OR = {
 				SOV = { has_full_control_of_state = 213 }
@@ -826,7 +958,7 @@ USA_russian_intervention = {
 	USA_intervene_in_archangelsk = {
 		allowed = { tag = USA }
 		available = {
-			is_puppet = no
+			is_subject = no
 			SOV = { has_war_with = RUS }
 			OR = {
 				SOV = { has_full_control_of_state = 214 }
@@ -877,7 +1009,7 @@ USA_russian_intervention = {
 	USA_intervene_in_vladivostok = {
 		allowed = { tag = USA }
 		available = {
-			is_puppet = no
+			is_subject = no
 			SOV = { has_war_with = RUS }
 			OR = {
 				SOV = { has_full_control_of_state = 408 }
@@ -1241,7 +1373,7 @@ foreign_politics = {
 			tag = USA
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			any_other_country = {
 				NOT = { has_war_with = ROOT }
 				has_full_control_of_state = 750
@@ -1272,7 +1404,7 @@ foreign_politics = {
 			tag = USA
 		}
 		available = {
-			is_puppet = no
+			is_subject = no
 			any_other_country = {
 				NOT = { has_war_with = ROOT }
 				has_full_control_of_state = 101

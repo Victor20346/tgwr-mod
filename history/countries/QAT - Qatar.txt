@@ -1,4 +1,4 @@
-﻿capital = 658
+﻿capital = 765
 
 # Starting tech
 set_technology = {
@@ -6,7 +6,7 @@ set_technology = {
 }
 set_convoys = 1
 
-set_stability = 0.2
+set_stability = 0.50
 
 set_politics = {
 	ruling_party = neutrality
@@ -21,7 +21,7 @@ set_popularities = {
 	neutrality = 100
 }
 create_country_leader = { 
-	name = "Abdullah bin Jassim"
+	name = "Abdullah bin Jassim Al Thani"
 	picture = "gfx/leaders/QAT/QAT_abdullah_jassim.dds" 
 	expire = "1935.1.1" 
 	ideology = despotism

@@ -12,18 +12,18 @@ ideas = {
             }
 			targeted_modifier = {
 				tag = BEL
-				attack_bonus_against = 0.05
-				defense_bonus_against = 0.05
+				attack_bonus_against = 0.3
+				defense_bonus_against = 0.3
 			}
 			targeted_modifier = {
 				tag = LUX
-				attack_bonus_against = 0.05
-				defense_bonus_against = 0.05
+				attack_bonus_against = 0.3
+				defense_bonus_against = 0.3
 			}
 			targeted_modifier = {
 				tag = FRA
-				attack_bonus_against = 0.05
-				defense_bonus_against = 0.05
+				attack_bonus_against = 0.1
+				defense_bonus_against = 0.1
 			}
         }
 		GER_idea_norddeutscher_bund_legacy = {
@@ -198,6 +198,19 @@ ideas = {
 				production_factory_start_efficiency_factor = 0.1
 			}
 		}
+		GER_zeppelin_bombing = {
+			picture = combined_bomber_offensive
+			allowed = { original_tag = GER }
+			allowed_civil_war = {always = no}
+			removal_cost = -1
+			equipment_bonus = {
+				airship_bomber_equipment = {
+					build_cost_ic = -0.07
+					air_bombing = 0.07
+					instant = yes
+				}
+			}
+		}
 		GER_idea_army_reform = {
 			picture = MEX_politicised_army
 			allowed = {
@@ -346,7 +359,10 @@ ideas = {
 			allowed_civil_war = { always = no }
 			removal_cost = -1	
 			modifier = {
-				communism_drift = 0.2
+				communism_drift = 0.3
+				stability_factor = -0.2
+				political_power_factor = -0.15
+				drift_defence_factor= -0.5 
 			}
 		}
 		GER_idea_stuggle_for_power = {
@@ -746,7 +762,7 @@ ideas = {
 			picture = generic_manpower_bonus
 			
 			modifier = {
-				war_support_factor = 0.5
+				war_support_factor = 0.05
 				drift_defence_factor = 0.5
 				resistance_damage_to_garrison = -0.20
 			}
@@ -785,6 +801,74 @@ ideas = {
 				consumer_goods_factor = -0.05
 				industrial_capacity_dockyard = 0.2
 				industrial_capacity_factory = 0.2
+			}
+		}
+		GER_german_staff_planning = {
+			allowed = { always = no }
+			allowed_civil_war = { always = no }
+			removal_cost = -1
+			picture = CZE_planning_bonus
+			modifier = {
+				planning_speed = -0.10
+			}
+		}
+		GER_german_staff_planning_auh = {
+			allowed = { always = no }
+			allowed_civil_war = { always = no }
+			removal_cost = -1
+			picture = CZE_planning_bonus
+			modifier = {
+				planning_speed = 0.10
+				army_org_factor = 0.10
+			}
+		}
+		#когда появится флот, нужно добавить как миссии-кризисы.
+		GER_state_in_blockade = {
+			allowed = { always = no }
+			allowed_civil_war = { always = no }
+			removal_cost = -1
+			picture = great_depression
+			available = { has_war = yes }
+			modifier = {
+				consumer_goods_factor = 0.05
+				supply_consumption_factor = 0.05
+				attrition = 0.05
+			}
+		}
+		GER_state_in_blockade2 = {
+			allowed = { always = no }
+			allowed_civil_war = { always = no }
+			removal_cost = -1
+			picture = great_depression
+			available = { has_war = yes }
+			modifier = {
+				consumer_goods_factor = 0.07
+				supply_consumption_factor = 0.9
+				attrition = 0.9
+			}
+		}
+		GER_state_in_blockade3 = {
+			allowed = { always = no }
+			allowed_civil_war = { always = no }
+			removal_cost = -1
+			picture = great_depression
+			available = { has_war = yes }
+			modifier = {
+				consumer_goods_factor = 0.12
+				supply_consumption_factor = 0.14
+				attrition = 0.14
+			}
+		}
+		GER_state_in_blockade4 = {
+			allowed = { always = no }
+			allowed_civil_war = { always = no }
+			removal_cost = -1
+			picture = great_depression
+			available = { has_war = yes }
+			modifier = {
+				consumer_goods_factor = 0.15
+				supply_consumption_factor = 0.20
+				attrition = 0.20
 			}
 		}
 	}

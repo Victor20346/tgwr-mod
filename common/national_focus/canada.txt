@@ -117,6 +117,18 @@ focus_tree = {
 		completion_reward = {
 			country_event = canada.65
 			navy_experience = 50
+
+			if = {
+				limit = {
+					CAN = {
+						is_subject_of = ENG
+					}
+				}
+
+				ENG = {
+					country_event = ww1_england.171
+				}
+			}
 		}
 	}
 	
@@ -913,6 +925,13 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = no
 		
+		bypass ={
+			ROOT = {
+				owns_state = 332
+				owns_state = 331
+			}
+		}
+		
 		available = {
 			NOT = {has_war_with = ENG}
 		}
@@ -1296,7 +1315,7 @@ focus_tree = {
 	focus = {
 		id = CAN_carribean_confederation
 		# A United Carribean Protectorate
-		icon = GFX_goal_generic_dangerous_deal #and this too
+		icon = GFX_goal_CAN_carribean_confederation
 		cost = 10.00
 		prerequisite = {
 			focus = CAN_carribean
@@ -2988,7 +3007,10 @@ focus_tree = {
 		available_if_capitulated = yes
 		
 		available = {
-			has_war = yes
+			OR = {
+				has_war = yes
+				has_country_flag = canada_is_britain
+			}
 		}
 
 		completion_reward = {
